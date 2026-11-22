@@ -72,27 +72,61 @@
         .on-dark-link:hover,.on-dark-link:focus{color:#fff}
         #spinner{z-index:9999}.spinner-grow.text-primary{color:var(--green-main)!important}.text-primary{color:var(--green-main)!important}
 
-        /* Top bar + navbar */
-        .top-bar{background:var(--green-deep);padding:8px 0;font-size:.82rem;letter-spacing:.02em}
-        .top-bar a{color:rgba(255,255,255,.65);transition:var(--transition)}
-        .top-bar a:hover,.top-bar a:focus{color:var(--green-light)}
-        .navbar{background:#fff!important;box-shadow:0 2px 14px rgba(27,67,50,.07);padding:.3rem 2rem}
-        .navbar-brand{padding-top:0;padding-bottom:0}
-        .navbar-logo-img{height:auto;max-height:108px;width:auto;max-width:420px;object-fit:contain;display:block}
-        .nav-link{color:var(--green-deep)!important;font-weight:500;font-size:.95rem;padding:1.5rem .9rem!important;transition:var(--transition)}
-        .nav-link:hover,.nav-link:focus{color:var(--green-main)!important}
-        .nav-link.nav-donate{background:var(--green-mid);color:#fff!important;padding:.6rem 1.5rem!important;margin-left:1rem;border-radius:3px}
-        .nav-link.nav-donate:hover,.nav-link.nav-donate:focus{background:var(--green-deep);color:#fff!important}
-        .navbar-toggler{border-color:rgba(27,67,50,.25)!important}
-        .navbar-toggler-icon{filter:invert(1) brightness(.35) sepia(1) hue-rotate(90deg) saturate(1.5)}
-        .nav-link.active,.nav-link[aria-current="page"]{color:var(--green-main)!important}
-        .nav-link[aria-current="page"]::before{content:"";display:inline-block;width:.45rem;height:.45rem;margin-right:.45rem;background:var(--sun);border-radius:0 100% 0 100%;vertical-align:.08em}
+        /* ===== HEADER / NAVBAR (identical on every page) =====
+           The header is fixed to the top of the screen, so --header-h tells each page's first
+           section how far to clear it. Below 992px the header row has a fixed height (--nav-h),
+           so it can never grow because the logo or the hamburger wraps onto a second line. */
+        :root {
+            --nav-h: 4.3rem;
+            --logo-max-h: 3.5rem;
+            --hero-gap: 2.5rem;
+            --header-h: var(--nav-h);
+            --hero-top: calc(var(--header-h) + var(--hero-gap));
+        }
+        @media (min-width: 576px)  { :root { --nav-h: 5.8rem; --logo-max-h: 5rem; --hero-gap: 3.25rem; } }
+        @media (min-width: 992px)  { :root { --header-h: 8.6rem; } }
+        @media (min-width: 1400px) { :root { --header-h: 9.8rem; } }
+
+        .top-bar { background: var(--green-deep); padding: 8px 0; font-size: 0.82rem; letter-spacing: 0.02em; }
+        .top-bar a { color: rgba(255,255,255,0.65); transition: var(--transition); }
+        .top-bar a:hover, .top-bar a:focus { color: var(--green-light); }
+
+        .navbar { background: #ffffff !important; box-shadow: 0 2px 14px rgba(27,67,50,0.07); padding: 0.3rem 2rem; }
+        .navbar-brand { padding-top: 0; padding-bottom: 0; }
+        .navbar-logo-img { height: auto; max-height: 108px; width: auto; max-width: 420px; object-fit: contain; display: block; }
+        .nav-link { color: var(--green-deep) !important; font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0.9rem !important; transition: var(--transition); }
+        .nav-link:hover, .nav-link:focus { color: var(--green-main) !important; }
+        .nav-link.active, .nav-link[aria-current="page"] { color: var(--green-main) !important; }
+        .nav-link.nav-donate { background: var(--green-mid); color: #fff !important; padding: 0.6rem 1.5rem !important; margin-left: 1rem; border-radius: 3px; }
+        .nav-link.nav-donate:hover, .nav-link.nav-donate:focus { background: var(--green-deep); color: #fff !important; }
+        .navbar-toggler { border-color: rgba(27,67,50,0.25) !important; }
+        .navbar-toggler-icon { filter: invert(1) brightness(0.35) sepia(1) hue-rotate(90deg) saturate(1.5); }
+        @media (min-width: 992px) {
+            .nav-link { white-space: nowrap; }
+        }
+        @media (min-width: 992px) and (max-width: 1399.98px) {
+            .navbar-logo-img { max-width: 240px; max-height: 88px; }
+            .nav-link { padding: 1.5rem 0.55rem !important; font-size: 0.9rem; }
+            .nav-link.nav-donate { padding: 0.55rem 1.1rem !important; margin-left: 0.4rem; }
+        }
+        @media (max-width: 991.98px) {
+            .navbar { padding: 0.4rem 1rem; min-height: var(--nav-h); }
+            .navbar-brand { min-width: 0; max-width: calc(100% - 4.75rem); min-height: var(--logo-max-h); margin-right: 0.75rem; }
+            .navbar-logo-img { max-height: var(--logo-max-h); max-width: 320px; max-width: min(320px, 100%); }
+            .navbar-toggler { flex: none; min-width: 44px; min-height: 44px; }
+            .navbar-collapse.show { max-height: calc(100vh - var(--nav-h)); max-height: calc(100dvh - var(--nav-h)); overflow-y: auto; overscroll-behavior: contain; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .site-footer .footer-social a { width: 44px; height: 44px; }
+        }
+        /* Causes only: current-page leaf marker in the nav */
+        .nav-link[aria-current="page"]::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; margin-right: 0.45rem; background: var(--sun); border-radius: 0 100% 0 100%; vertical-align: 0.08em; }
 
         /* Shared section styles */
         .sec{padding:7rem 0}.sec-mist{background:var(--green-mist)}
         .h-section{font-size:clamp(2rem,4vw,3.2rem);margin:0 0 1.4rem}
         .lead-copy{font-size:1.08rem;line-height:1.75;color:var(--text-body);max-width:38rem}
-        section[id]{scroll-margin-top:8rem}
+        section[id]{scroll-margin-top:calc(var(--header-h) + 1rem)}
         .gs-panel{background:var(--green-deep);color:#fff;padding:2.75rem 2.5rem 3rem;border-radius:var(--leaf-sm) 0 var(--leaf-sm) 0}
         .gs-panel h3{color:#fff;font-size:clamp(1.5rem,2.4vw,1.95rem)}
         .gs-panel p{color:rgba(255,255,255,.93);line-height:1.7;margin:0 0 1.5rem}
@@ -138,7 +172,7 @@
            CAUSES PAGE ONLY
            ===================================================================== */
         /* Opening: an editorial split. Text on white, one photograph, and the cause index overlapping its corner. */
-        .open{padding:11.5rem 0 7rem;background:#fff}
+        .open{padding:max(11.5rem,calc(var(--header-h) + 1rem)) 0 7rem;background:#fff}
         .open h1{font-size:clamp(2.6rem,5.2vw,4.5rem);font-weight:750;line-height:1.03;letter-spacing:-.025em;margin:0 0 1.5rem}
         .open .lead-copy{font-size:clamp(1.05rem,1.6vw,1.2rem)}
         .open-fig{position:relative;margin:0 0 3.5rem}
@@ -227,16 +261,9 @@
         .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
         .js .reveal.in{opacity:1;transform:none}
 
-        @media (min-width:992px) and (max-width:1399.98px){
-            .navbar{padding:.3rem 1rem}.navbar-logo-img{max-height:90px;max-width:240px}
-            .nav-link{font-size:.88rem;padding:1.5rem .5rem!important}.nav-link.nav-donate{padding:.55rem 1.1rem!important;margin-left:.5rem}
-        }
         @media (max-width:991.98px){
-            .navbar{padding:.4rem 1rem}.nav-link{padding:.6rem 1rem!important}
-            .nav-link.nav-donate{display:inline-block;margin:.5rem 0 .5rem 1rem}
-            .navbar-logo-img{max-height:80px;max-width:320px}
             .sec,.cause,.donate-section{padding:4.75rem 0}
-            .open{padding:8.5rem 0 4.5rem}
+            .open{padding:var(--hero-top) 0 4.5rem}
             .open-fig{margin-bottom:0}
             .open-index{position:relative;left:auto;bottom:auto;margin:-2.5rem 0 0 1rem;width:calc(100% - 1rem)}
             .path{margin-top:3.5rem}.path-steps{grid-template-columns:repeat(2,1fr)}.path-steps li:nth-child(n){margin-top:0}
@@ -276,10 +303,10 @@
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5" aria-label="Main navigation">
-            <a href="index.html" class="navbar-brand ms-4 ms-lg-0 d-flex align-items-center">
+            <a href="index.html" class="navbar-brand ms-0 ms-sm-4 ms-lg-0 d-flex align-items-center">
                 <img src="img/newleaf.png" alt="Leafspire home" class="navbar-logo-img">
             </a>
-            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button type="button" class="navbar-toggler me-0 me-sm-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
