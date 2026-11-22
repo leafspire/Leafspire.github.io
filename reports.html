@@ -223,12 +223,58 @@
         }
         @media (max-width: 479.98px) {
             .shelf { grid-template-columns: minmax(0, min(78vw, 300px)); gap: 3.5rem; }
-            .report-cover { width: min(64vw, 220px); }
+            .report-cover { width: 100%; }
             .report-title, .report-desc { max-width: none; }
         }
         @media (prefers-reduced-motion: reduce) {
             .report-cover, .report-link span { transition: none; }
             .shelf-item:focus-within .report-cover, .shelf-item:hover .report-cover { transform: none; }
+        }
+
+        /* =====================================================================
+           RESPONSIVE CORRECTIONS (identical block on merch, programme and reports)
+           Header, anchors, tap targets and footer. Safe to move into css/style.css
+           later; nothing here changes the desktop appearance.
+           ===================================================================== */
+
+        /* Anchor links (#collection, #enquire, #main) stop below the fixed header instead of beneath it */
+        html { scroll-padding-top: 6.5rem; }
+        @media (min-width: 992px) { html { scroll-padding-top: 10rem; } }
+
+        /* Open mobile menu: leave room for the header it sits inside. Under 992px the header is the navbar only (about 93px);
+           from 992px to 1199px the top bar is also showing (about 131px). dvh follows the real visible height on phones. */
+        @media (max-width: 1199.98px) {
+            .navbar-collapse { max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px); overflow-y: auto; }
+        }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .navbar-collapse { max-height: calc(100vh - 140px); max-height: calc(100dvh - 140px); }
+        }
+
+        /* Hamburger: a comfortable tap target, never shrunk by the logo */
+        @media (max-width: 991.98px) {
+            .navbar > .navbar-toggler { flex: none; min-width: 44px; min-height: 44px; }
+        }
+
+        /* Phones: the logo, its side margins and the hamburger used to add up to more than the screen, so the hamburger
+           wrapped onto a second row and the header grew taller. Side margins now match the page gutter and the logo
+           scales (keeping its proportions) into whatever width is left beside the hamburger. */
+        @media (max-width: 575.98px) {
+            .navbar { padding: 0.4rem 0.75rem; }
+            .navbar > .navbar-brand { margin-left: 0 !important; margin-right: 0.75rem; min-width: 0; }
+            .navbar > .navbar-toggler { margin-right: 0 !important; }
+            .navbar-logo-img { max-width: min(320px, calc(100vw - 6rem)); }
+        }
+
+        /* Touch devices and phones: larger footer tap targets, same look */
+        @media (max-width: 575.98px) {
+            .footer-social a { width: 40px; height: 40px; }
+            .footer-links li { margin-bottom: 0.15rem; }
+            .footer-links a { display: inline-block; padding: 0.3rem 0; }
+        }
+
+        /* Reports: larger tap area for "Read Full Report" on touch screens, same visual spacing */
+        @media (max-width: 991.98px) {
+            .report-link { padding: 0.5rem 0; margin-top: 0.5rem; }
         }
     </style>
 </head>
