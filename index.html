@@ -518,6 +518,44 @@
             #trefoil .leaf, .way h3::before, .yt-play, .pillar, .pillar-num { transition: none; }
             .pillar:hover { transform: none; }
         }
+
+        /* ===== RESPONSIVE CORRECTIONS (header) =====
+           Cause: .navbar-logo-img allowed 320px width plus the brand's ms-4 margin, so on phones the logo filled the row
+           and the hamburger wrapped onto a second line. That made the fixed header ~133px tall and it covered the hero heading.
+           Scoped to the collapsed-menu range (below 1200px); the desktop header is untouched. */
+        @media (max-width: 1199.98px) {
+            .navbar > .navbar-brand { min-width: 0; flex: 0 1 auto; margin-right: 1rem; }
+            .navbar-logo-img { max-width: 100%; }
+            .navbar-toggler { flex: none; margin-left: auto; }
+        }
+        @media (max-width: 575.98px) {
+            .navbar { padding: 0.35rem 0.5rem; }
+            .navbar > .navbar-brand { flex: 1 1 0; margin-left: 0.75rem !important; margin-right: 0.75rem; }
+            .navbar-toggler { margin-right: 0.75rem !important; }
+            .navbar-logo-img { max-height: 56px; }
+        }
+
+        /* ===== RESPONSIVE CORRECTIONS (tap targets, tablets and phones only) =====
+           Footer social icons, contact links, footer links and in-page text links were 24-36px high. Raised toward 44px; desktop unchanged. */
+        @media (max-width: 991.98px) {
+            .footer-social a { width: 44px; height: 44px; }
+            .site-footer .contact-line a, .faq-close .contact-line a, .contact-band .contact-line a { display: inline-block; padding: 0.55rem 0; }
+            .site-footer .contact-line { margin-bottom: 0.2rem; }
+            .footer-links li { margin-bottom: 0; }
+            .footer-links a { display: inline-block; padding: 0.6rem 0; }
+            .faq-toggle-all { padding: 0.65rem 0; }
+            .ways-index { gap: 0 1.6rem; }
+            .ways-index a { display: inline-block; padding: 0.55rem 0; }
+            .way .social-links a { display: inline-block; padding: 0.5rem 0.6rem; margin: 0 -0.6rem; }
+        }
+
+        /* ===== RESPONSIVE CORRECTIONS (home hero, phones) =====
+           The caption reserved 9rem below the copy for a button row that is not in the markup, so the copy was squeezed into
+           the upper part of a fixed-height box and ran under the header on short or narrow phones. */
+        @media (max-width: 575.98px) {
+            #header-carousel .carousel-item img { min-height: 620px; }
+            #header-carousel .carousel-caption { padding: 6rem 0 5rem; }
+        }
     </style>
 </head>
 
