@@ -130,7 +130,21 @@
         .spinner-grow.text-primary { color: var(--green-main) !important; }
         .text-primary { color: var(--green-main) !important; }
 
-        /* ===== TOP BAR + NAVBAR ===== */
+        /* ===== HEADER / NAVBAR (identical on every page) =====
+           The header is fixed to the top of the screen, so --header-h tells each page's first
+           section how far to clear it. Below 992px the header row has a fixed height (--nav-h),
+           so it can never grow because the logo or the hamburger wraps onto a second line. */
+        :root {
+            --nav-h: 4.3rem;
+            --logo-max-h: 3.5rem;
+            --hero-gap: 2.5rem;
+            --header-h: var(--nav-h);
+            --hero-top: calc(var(--header-h) + var(--hero-gap));
+        }
+        @media (min-width: 576px)  { :root { --nav-h: 5.8rem; --logo-max-h: 5rem; --hero-gap: 3.25rem; } }
+        @media (min-width: 992px)  { :root { --header-h: 8.6rem; } }
+        @media (min-width: 1400px) { :root { --header-h: 9.8rem; } }
+
         .top-bar { background: var(--green-deep); padding: 8px 0; font-size: 0.82rem; letter-spacing: 0.02em; }
         .top-bar a { color: rgba(255,255,255,0.65); transition: var(--transition); }
         .top-bar a:hover, .top-bar a:focus { color: var(--green-light); }
@@ -140,16 +154,28 @@
         .navbar-logo-img { height: auto; max-height: 108px; width: auto; max-width: 420px; object-fit: contain; display: block; }
         .nav-link { color: var(--green-deep) !important; font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0.9rem !important; transition: var(--transition); }
         .nav-link:hover, .nav-link:focus { color: var(--green-main) !important; }
-        .nav-link[aria-current="page"] { color: var(--green-main) !important; }
+        .nav-link.active, .nav-link[aria-current="page"] { color: var(--green-main) !important; }
         .nav-link.nav-donate { background: var(--green-mid); color: #fff !important; padding: 0.6rem 1.5rem !important; margin-left: 1rem; border-radius: 3px; }
         .nav-link.nav-donate:hover, .nav-link.nav-donate:focus { background: var(--green-deep); color: #fff !important; }
         .navbar-toggler { border-color: rgba(27,67,50,0.25) !important; }
         .navbar-toggler-icon { filter: invert(1) brightness(0.35) sepia(1) hue-rotate(90deg) saturate(1.5); }
+        @media (min-width: 992px) {
+            .nav-link { white-space: nowrap; }
+        }
         @media (min-width: 992px) and (max-width: 1399.98px) {
-            .navbar { padding-left: 1rem; padding-right: 1rem; }
-            .navbar-logo-img { max-width: 230px; max-height: 84px; }
+            .navbar-logo-img { max-width: 240px; max-height: 88px; }
             .nav-link { padding: 1.5rem 0.55rem !important; font-size: 0.9rem; }
             .nav-link.nav-donate { padding: 0.55rem 1.1rem !important; margin-left: 0.4rem; }
+        }
+        @media (max-width: 991.98px) {
+            .navbar { padding: 0.4rem 1rem; min-height: var(--nav-h); }
+            .navbar-brand { min-width: 0; max-width: calc(100% - 4.75rem); min-height: var(--logo-max-h); margin-right: 0.75rem; }
+            .navbar-logo-img { max-height: var(--logo-max-h); max-width: 320px; max-width: min(320px, 100%); }
+            .navbar-toggler { flex: none; min-width: 44px; min-height: 44px; }
+            .navbar-collapse.show { max-height: calc(100vh - var(--nav-h)); max-height: calc(100dvh - var(--nav-h)); overflow-y: auto; overscroll-behavior: contain; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .site-footer .footer-social a { width: 44px; height: 44px; }
         }
 
         /* ===== SHARED ===== */
@@ -164,17 +190,20 @@
         .rise.d1 { animation-delay: 0.12s; }
 
         /* ===== 1. OPENING: typographic, no full-bleed photograph ===== */
-        .opening { padding: 12.5rem 0 6rem; background: linear-gradient(180deg, var(--green-mist) 0%, #fff 100%); }
+        .opening { padding: calc(var(--header-h) + 2rem) 0 5rem; background: linear-gradient(180deg, var(--green-mist) 0%, #fff 100%); }
         .opening h1 { font-size: clamp(3.4rem, 10.5vw, 8.5rem); font-weight: 750; letter-spacing: -0.04em; line-height: 0.95; color: var(--green-deep); margin: 0 0 3.5rem; }
         .opening h1 span { color: var(--green-main); }
         .opening-photo { margin: 0; }
-        .opening-photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--leaf) 0 var(--leaf) 0; }
+        /* IMAGE SIZING NOTE: the HTML width/height attributes (e.g. height="750") act as CSS height hints.
+           Without "height: auto" they can override aspect-ratio and render the photo at full pixel height,
+           so every content image below sets height: auto, then an aspect-ratio and a max-height cap. */
+        .opening-photo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 26rem; object-fit: cover; object-position: center 30%; border-radius: var(--leaf) 0 var(--leaf) 0; }
         .opening-intro { font-family: var(--font-display); font-size: clamp(1.2rem, 1.9vw, 1.55rem); font-weight: 500; line-height: 1.45; letter-spacing: -0.01em; color: var(--green-deep); margin: 0; }
 
         /* ===== 2. IDENTITY ===== */
         .identity-media { position: relative; isolation: isolate; }
         .identity-media::before { content: ""; position: absolute; z-index: -1; right: -1.25rem; bottom: -1.25rem; width: 60%; height: 65%; background: var(--green-pale); border-radius: var(--leaf) 0 var(--leaf) 0; }
-        .identity-media img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 0 var(--leaf) 0 var(--leaf); }
+        .identity-media img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; max-height: 28rem; object-fit: cover; object-position: center 25%; border-radius: 0 var(--leaf) 0 var(--leaf); }
         .identity-text p { max-width: 36rem; margin: 0 0 1.1rem; }
         .identity-text .pull { font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 600; line-height: 1.35; color: var(--green-mid); margin: 1.75rem 0 0; max-width: 32rem; }
 
@@ -238,7 +267,7 @@
         /* ===== 9. STORY ===== */
         .story-media { position: relative; isolation: isolate; margin: 0; }
         .story-media::before { content: ""; position: absolute; z-index: -1; left: -1.25rem; bottom: -1.25rem; width: 60%; height: 65%; background: var(--green-pale); border-radius: 0 var(--leaf) 0 var(--leaf); }
-        .story-media img { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: var(--leaf) 0 var(--leaf) 0; }
+        .story-media img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; max-height: 26rem; object-fit: cover; object-position: center 30%; border-radius: var(--leaf) 0 var(--leaf) 0; }
         .journey p { max-width: 34rem; margin: 0 0 1.5rem; }
 
         /* ===== 10. PEOPLE ===== */
@@ -303,12 +332,8 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 991.98px) {
-            .navbar { padding: 0.4rem 1rem; }
-            .nav-link { padding: 0.6rem 1rem !important; }
-            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
-            .navbar-logo-img { max-height: 80px; max-width: 320px; }
             .sec, .mv-sec, .people-sec { padding: 4.75rem 0; }
-            .opening { padding: 9rem 0 4rem; }
+            .opening { padding: var(--hero-top) 0 4rem; }
             .opening h1 { margin-bottom: 2.25rem; }
             .impact-sec { padding: 4.25rem 0; }
             .impact-grid { grid-template-columns: repeat(3, 1fr); }
@@ -317,6 +342,10 @@
             .leaf-cluster { margin: 3rem 0 0; }
             .areas-lead { margin-bottom: 2.5rem; }
             .vision-panel { margin-top: 1.5rem; }
+            /* Tablet: stacked columns make images full width, so cap their height */
+            .opening-photo img { aspect-ratio: 16 / 9; max-height: 22rem; }
+            .identity-media img { aspect-ratio: 16 / 10; max-height: 22rem; }
+            .story-media img { aspect-ratio: 16 / 10; max-height: 22rem; }
         }
         @media (max-width: 575.98px) {
             .row { --bs-gutter-x: 1.5rem; }
@@ -326,6 +355,8 @@
             .identity-media::before, .story-media::before { right: -0.6rem; left: auto; }
             .story-media::before { left: -0.6rem; right: auto; }
             .btn-row .btn { flex: 1 1 auto; text-align: center; }
+            /* Mobile: shorter, wider crops (corner radii are unchanged) */
+            .opening-photo img, .identity-media img, .story-media img { aspect-ratio: 4 / 3; max-height: 17rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             .rise { animation: none; }
@@ -355,10 +386,10 @@
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5" aria-label="Main navigation">
-            <a href="index.html" class="navbar-brand ms-4 ms-lg-0 d-flex align-items-center">
+            <a href="index.html" class="navbar-brand ms-0 ms-sm-4 ms-lg-0 d-flex align-items-center">
                 <img src="img/newleaf.png" alt="Leafspire home" class="navbar-logo-img">
             </a>
-            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button type="button" class="navbar-toggler me-0 me-sm-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
