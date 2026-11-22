@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Our Story | Leafspire: From a Youth Social Club to a Youth-Led Initiative in Kenya</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="How Leafspire grew from an Instagram social club for young people into a youth-led initiative working on climate action, leadership and community wellbeing in Kenya.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#1b4332">
+
+    <!--
+        SEO PLACEHOLDER: the published URL is not yet known, so no canonical, og:url or absolute og:image is included.
+        Once the site address is confirmed, add:
+        <link rel="canonical" href="https://YOUR-SITE/our-blog.html">
+        <meta property="og:url" content="https://YOUR-SITE/our-blog.html">
+        <meta property="og:image" content="https://YOUR-SITE/img/carousel-2.jpg">
+    -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Leafspire">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="Our Story | Leafspire: From a Youth Social Club to a Youth-Led Initiative in Kenya">
+    <meta property="og:description" content="How Leafspire grew from an Instagram social club for young people into a youth-led initiative working on climate action, leadership and community wellbeing in Kenya.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Story | Leafspire">
+    <meta name="twitter:description" content="How Leafspire grew from an Instagram social club for young people into a youth-led initiative working on climate action, leadership and community wellbeing in Kenya.">
+
+    <link rel="shortcut icon" href="img/leafspirelogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <style>
+/* ===== DESIGN TOKENS (same as homepage) ===== */
+        :root {
+            --green-deep:   #1b4332;
+            --green-mid:    #2d6a4f;
+            --green-main:   #40916c;
+            --green-soft:   #52b788;
+            --green-light:  #b7e4c7;
+            --green-pale:   #d8f3dc;
+            --green-mist:   #f0faf3;
+            --white:        #ffffff;
+            --dark:         #0d1b12;
+            --text-body:    #34453a;
+            --text-muted:   #5a6e61;
+            --sun:          #f0b429;
+            --sun-bright:   #ffc94d;
+            --water:        #4f9fb8;
+
+            --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+            --font-body:    'Figtree', 'Segoe UI', system-ui, sans-serif;
+
+            --leaf:    clamp(48px, 9vw, 130px);
+            --leaf-sm: clamp(28px, 5vw, 64px);
+
+            --transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body { font-family: var(--font-body); color: var(--text-body); background: #fff; font-size: 1.05rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5 { text-wrap: balance; font-family: var(--font-display); color: var(--dark); line-height: 1.12; letter-spacing: -0.015em; font-weight: 700; }
+        ::selection { background: #cfeedb; color: #0d1b12; }
+
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--green-main); outline-offset: 3px; }
+        .dark-band a:focus-visible, .site-footer a:focus-visible, .site-footer input:focus-visible, .site-footer button:focus-visible { outline-color: var(--sun); }
+        .skip-link:focus { position: fixed; top: 8px; left: 8px; z-index: 10000; background: #fff; color: var(--green-deep); padding: 0.6rem 1rem; }
+
+        /* Buttons */
+        .btn { border-radius: 3px; font-weight: 600; letter-spacing: 0.01em; padding: 0.75rem 1.5rem; transition: var(--transition); }
+        .btn-primary { background-color: var(--green-mid); border-color: var(--green-mid); color: #fff; }
+        .btn-primary:hover, .btn-primary:focus { background-color: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+        .btn-sun { background: var(--sun); border: 1px solid var(--sun); color: #16281d; }
+        .btn-sun:hover, .btn-sun:focus { background: var(--sun-bright); border-color: var(--sun-bright); color: #16281d; }
+        .text-link { color: var(--green-mid); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(45,106,79,0.35); text-underline-offset: 4px; transition: var(--transition); }
+        .text-link:hover, .text-link:focus { color: var(--green-deep); text-decoration-color: currentColor; }
+
+        #spinner { z-index: 9999; }
+        .spinner-grow.text-primary { color: var(--green-main) !important; }
+        .text-primary { color: var(--green-main) !important; }
+
+        /* Top bar + navbar (same as homepage) */
+        .top-bar { background: var(--green-deep); padding: 8px 0; font-size: 0.82rem; letter-spacing: 0.02em; }
+        .top-bar a { color: rgba(255,255,255,0.65); transition: var(--transition); }
+        .top-bar a:hover, .top-bar a:focus { color: var(--green-light); }
+        .navbar { background: #fff !important; box-shadow: 0 2px 14px rgba(27,67,50,0.07); padding: 0.3rem 2rem; }
+        .navbar-brand { padding-top: 0; padding-bottom: 0; }
+        .navbar-logo-img { height: auto; max-height: 108px; width: auto; max-width: 420px; object-fit: contain; display: block; }
+        .nav-link { color: var(--green-deep) !important; font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0.75rem !important; transition: var(--transition); }
+        .nav-link:hover, .nav-link:focus { color: var(--green-main) !important; }
+        .nav-link.nav-donate { background: var(--green-mid); color: #fff !important; padding: 0.6rem 1.5rem !important; margin-left: 1rem; border-radius: 3px; }
+        .nav-link.nav-donate:hover, .nav-link.nav-donate:focus { background: var(--green-deep); color: #fff !important; }
+        .navbar-toggler { border-color: rgba(27,67,50,0.25) !important; }
+        .navbar-toggler-icon { filter: invert(1) brightness(0.35) sepia(1) hue-rotate(90deg) saturate(1.5); }
+
+        /* ===== OUR STORY: EDITORIAL LAYOUT ===== */
+        .leaf-mark { display: inline-block; width: 0.8em; height: 0.8em; background: var(--sun); border-radius: 0 100% 0 100%; }
+
+        .chapter-no { font-family: var(--font-display); font-weight: 800; font-size: clamp(4.5rem, 11vw, 9rem); line-height: 0.85; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 2px var(--green-light); display: block; margin: 0 0 1rem; user-select: none; }
+        .dark-band .chapter-no { -webkit-text-stroke-color: rgba(183,228,199,0.35); }
+        .chapter-title { font-size: clamp(2rem, 4.2vw, 3.4rem); margin: 0 0 1.4rem; }
+        .prose p { margin: 0 0 1.25rem; max-width: 36rem; line-height: 1.8; }
+        .prose p:last-child { margin-bottom: 0; }
+
+        /* Opening */
+        .opening { position: relative; padding: 12.5rem 0 7rem; overflow: hidden; background: var(--green-mist); isolation: isolate; }
+        .opening::before { content: ""; position: absolute; z-index: -1; right: -6vw; top: 6rem; width: min(46vw, 620px); aspect-ratio: 1; background: var(--green-pale); border-radius: 0 100% 0 100%; opacity: 0.8; }
+        .opening::after { content: ""; position: absolute; z-index: -1; left: -5vw; bottom: -8vw; width: min(22vw, 260px); aspect-ratio: 1; background: rgba(240,180,41,0.35); border-radius: 0 100% 0 100%; }
+        .opening h1 { font-size: clamp(4rem, 15vw, 12.5rem); font-weight: 800; line-height: 0.88; letter-spacing: -0.045em; margin: 0 0 2.5rem -0.05em; color: var(--green-deep); }
+        .opening h1 span { display: block; }
+        .opening h1 .indent { padding-left: clamp(1.5rem, 12vw, 11rem); color: var(--green-main); }
+        .opening-intro { font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.01em; color: var(--dark); max-width: 28em; margin: 0; }
+
+        /* Chapter 1: narrow column with drop cap */
+        .ch-begin { padding: 7.5rem 0 6rem; }
+        .ch-begin .prose { margin-left: auto; margin-right: auto; max-width: 38rem; }
+        .ch-begin .prose p { max-width: none; }
+        .dropcap::first-letter { font-family: var(--font-display); font-weight: 800; float: left; font-size: 4.9rem; line-height: 0.82; padding: 0.35rem 0.8rem 0 0; color: var(--green-main); }
+        .begin-aside { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; line-height: 1.3; color: var(--green-deep); border-left: 4px solid var(--sun); padding: 0.2rem 0 0.2rem 1.25rem; margin: 2rem 0; }
+
+        /* Chapter 2: image + text */
+        .ch-together { padding: 3rem 0 8rem; }
+        .photo-wrap { position: relative; isolation: isolate; }
+        .photo-wrap::before { content: ""; position: absolute; z-index: -1; bottom: -1.75rem; left: -1.75rem; width: 62%; height: 70%; background: var(--green-pale); border-radius: 0 var(--leaf) 0 var(--leaf); }
+        .photo-wrap.flip::before { left: auto; right: -1.75rem; border-radius: var(--leaf) 0 var(--leaf) 0; }
+        .photo-wrap img { display: block; width: 100%; object-fit: cover; }
+        .shape-a { border-radius: var(--leaf) 0 var(--leaf) 0; }
+        .shape-b { border-radius: 0 var(--leaf) 0 var(--leaf); }
+        .ch-together .photo-wrap img { aspect-ratio: 4 / 5; }
+        .ch-together .text-col { padding-top: 3rem; }
+        .keep-line { font-family: var(--font-display); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 600; line-height: 1.3; color: var(--green-mid); margin: 2rem 0 0; max-width: 24em; }
+
+        /* Chapter 3: statement band */
+        .dark-band { background: var(--green-deep); color: #fff; }
+        .dark-band h2, .dark-band h3 { color: #fff; }
+        .ch-question { padding: 8rem 0; }
+        .statement { font-family: var(--font-display); font-weight: 650; font-size: clamp(2rem, 5vw, 4.2rem); line-height: 1.08; letter-spacing: -0.03em; color: #fff; margin: 0 0 4rem; max-width: 17em; }
+        .statement em { font-style: normal; color: var(--sun); }
+        .ch-question .prose p { color: rgba(255,255,255,0.88); }
+
+        /* Chapter 4: evolution */
+        .ch-evolve { padding: 8rem 0; }
+        .shift-list { list-style: none; padding: 0; margin: 2.2rem 0 0; }
+        .shift-list li { display: grid; grid-template-columns: 1fr; padding: 1.5rem 0; border-top: 1px solid var(--green-light); }
+        .shift-list li:last-child { border-bottom: 1px solid var(--green-light); }
+        .shift-list .from { font-size: 0.95rem; color: var(--text-muted); }
+        .shift-list .to { font-family: var(--font-display); font-weight: 650; font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.25; color: var(--green-deep); letter-spacing: -0.015em; }
+        .ch-evolve .photo-wrap img { aspect-ratio: 3 / 4; }
+        .ch-evolve .photo-col { margin-top: 0; }
+        @media (min-width: 992px) { .ch-evolve .photo-col { margin-top: 6rem; } }
+
+        /* Chapter 5: Leafspire */
+        .ch-leafspire { padding: 8rem 0; background: var(--green-mist); }
+        .areas { list-style: none; margin: 2.5rem 0 0; padding: 0; counter-reset: area; }
+        .areas li { counter-increment: area; display: grid; grid-template-columns: 3rem 1fr; gap: 0 1rem; padding: 1.5rem 0; border-top: 1px solid rgba(45,106,79,0.25); }
+        .areas li::before { content: counter(area, decimal-leading-zero); font-family: var(--font-display); font-weight: 700; color: var(--green-main); font-size: 1.1rem; padding-top: 0.2rem; }
+        .areas h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); margin: 0 0 0.4rem; }
+        .areas p { margin: 0; max-width: 32rem; line-height: 1.7; }
+        .tagline-block { margin-top: 5.5rem; }
+        .tagline-block .tagline { font-family: var(--font-display); font-weight: 750; font-size: clamp(2.2rem, 5.6vw, 4.6rem); line-height: 1.03; letter-spacing: -0.03em; color: var(--green-deep); margin: 0 0 1.5rem; }
+        .tagline-block .tagline span { color: var(--green-main); display: block; }
+        .ch-leafspire .photo-wrap img { aspect-ratio: 5 / 4; }
+
+        /* Chapter 6: future */
+        .ch-future { padding: 8rem 0 7rem; position: relative; overflow: hidden; isolation: isolate; }
+        .ch-future::after { content: ""; position: absolute; z-index: -1; right: -8vw; top: -6vw; width: min(40vw, 460px); aspect-ratio: 1; background: rgba(82,183,136,0.16); border-radius: 0 100% 0 100%; }
+        .ch-future .prose p { color: rgba(255,255,255,0.9); }
+        .future-note { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(183,228,199,0.3); font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 36rem; }
+
+        /* Closing */
+        .closing { background: var(--green-mid); color: #fff; padding: 7rem 0; }
+        .closing h2 { color: #fff; font-size: clamp(2.4rem, 5.6vw, 4.8rem); letter-spacing: -0.03em; margin: 0 0 1.2rem; }
+        .closing p { color: rgba(255,255,255,0.92); font-size: 1.15rem; max-width: 30rem; margin: 0; }
+        .closing a:focus-visible { outline-color: var(--sun); }
+        .closing-nav { list-style: none; margin: 0; padding: 0; }
+        .closing-nav li { border-top: 1px solid rgba(255,255,255,0.28); }
+        .closing-nav li:last-child { border-bottom: 1px solid rgba(255,255,255,0.28); }
+        .closing-nav a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.15rem 0; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.15rem, 2vw, 1.45rem); text-decoration: none; transition: var(--transition), padding 0.25s ease; }
+        .closing-nav a span.sub { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.92rem; color: rgba(255,255,255,0.75); margin-top: 0.15rem; }
+        .closing-nav a:hover, .closing-nav a:focus { color: var(--green-light); padding-left: 0.5rem; }
+        .closing-nav i { flex: none; }
+
+        /* Scroll reveal (content stays visible without JS) */
+        .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .js .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .closing-nav a { transition: none; }
+        }
+
+        /* Footer (same as homepage) */
+        .site-footer { background: var(--dark); color: rgba(255,255,255,0.65); padding-top: 4.5rem; }
+        .footer-logo-link { display: inline-block; background: none; padding: 0; border-radius: 0; margin-bottom: 1.1rem; line-height: 0; }
+        .footer-logo { height: 56px; width: auto; max-width: 100%; display: block; background: none; }
+        .footer-tagline { color: rgba(255,255,255,0.85); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.35; }
+        .footer-heading { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.95); margin-bottom: 1.25rem; letter-spacing: 0; }
+        .site-footer p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 0.6rem; }
+        .site-footer a { color: rgba(255,255,255,0.72); text-decoration: none; transition: var(--transition); }
+        .site-footer a:hover, .site-footer a:focus { color: var(--green-light); }
+        .footer-links { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 1.5rem; }
+        .footer-links li { margin-bottom: 0.45rem; font-size: 0.95rem; break-inside: avoid; }
+        .footer-social { display: flex; gap: 0.5rem; }
+        .footer-social a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(82,183,136,0.3); border-radius: 3px; font-size: 0.8rem; color: var(--green-light); }
+        .footer-social a:hover, .footer-social a:focus { background: var(--green-main); border-color: var(--green-main); color: #fff; }
+        .contact-line { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.7rem; font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.72); }
+        .contact-line i { flex: 0 0 1.25rem; width: 1.25rem; text-align: center; line-height: inherit; color: var(--green-soft); }
+        .contact-line a { min-width: 0; overflow-wrap: anywhere; }
+        .subscribe-field { display: flex; flex-wrap: wrap; gap: 0.6rem; max-width: 420px; }
+        .subscribe-field .form-control { flex: 1 1 13rem; min-width: 0; height: 3rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.07) !important; border: 1px solid rgba(82,183,136,0.3) !important; color: #fff !important; border-radius: 3px; font-size: 0.95rem; }
+        .subscribe-field .form-control::placeholder { color: rgba(255,255,255,0.55); }
+        .subscribe-field .form-control:focus { border-color: var(--green-soft) !important; box-shadow: 0 0 0 3px rgba(82,183,136,0.2); }
+        .subscribe-field .btn { flex: 0 0 auto; height: 3rem; padding: 0 1.4rem; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; }
+        .footer-note { font-size: 0.85rem; color: rgba(255,255,255,0.55); display: block; margin-top: 0.7rem; }
+        .footer-bottom { background: rgba(0,0,0,0.25); margin-top: 3.5rem; padding: 1.25rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+        .footer-bottom a { color: var(--green-light); }
+        .footer-bottom a:hover, .footer-bottom a:focus { color: #fff; }
+
+        .back-to-top { background: var(--green-mid) !important; border: none !important; border-radius: 4px !important; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; }
+        .back-to-top:hover { background: var(--green-deep) !important; }
+
+        .leafspire-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 9999; }
+        .leafspire-popup-card { background: #fff; padding: 30px; border-radius: 6px; text-align: center; width: 90%; max-width: 420px; }
+        .leafspire-icon { font-size: 42px; margin-bottom: 10px; }
+        .leafspire-popup-card h3 { color: #1f6f4a; font-family: var(--font-body); font-size: 1.4rem; }
+        .leafspire-popup-card p { font-size: 14px; color: #444; }
+        .leafspire-btn { margin-top: 15px; padding: 10px 20px; border: none; background: #1f6f4a; color: white; border-radius: 3px; cursor: pointer; }
+
+        /* Responsive */
+        @media (max-width: 1199.98px) { .nav-link { padding: 1.5rem 0.55rem !important; font-size: 0.9rem; } }
+        @media (max-width: 991.98px) {
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; max-width: 320px; }
+            .opening { padding: 8.5rem 0 4.5rem; }
+            .ch-begin { padding: 4.5rem 0 3.5rem; }
+            .ch-together { padding: 1.5rem 0 4.75rem; }
+            .ch-together .text-col { padding-top: 3.5rem; }
+            .ch-question, .ch-evolve, .ch-leafspire, .ch-future { padding: 4.75rem 0; }
+            .closing { padding: 4.75rem 0; }
+            .statement { margin-bottom: 2.5rem; }
+            .tagline-block { margin-top: 3.5rem; }
+            .photo-wrap::before { left: -0.9rem; bottom: -0.9rem; }
+            .photo-wrap.flip::before { right: -0.9rem; }
+        }
+        @media (max-width: 575.98px) {
+            .row { --bs-gutter-x: 1.5rem; }
+            .dropcap::first-letter { font-size: 4rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="visually-hidden-focusable skip-link" href="#main">Skip to main content</a>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Header / Navbar Start -->
+    <header class="container-fluid fixed-top px-0">
+        <div class="top-bar d-none d-lg-block">
+            <div class="px-5 text-end">
+                <small>Follow us:</small>
+                <a class="ms-3" href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="ms-3" href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                <a class="ms-3" href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                <a class="ms-3" href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-lg-5" aria-label="Main navigation">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0 d-flex align-items-center">
+                <img src="img/newleaf.png" alt="Leafspire home" class="navbar-logo-img">
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0 align-items-lg-center">
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="causes.html" class="nav-item nav-link">Causes</a>
+                    <a href="service.html" class="nav-item nav-link">Our Programmes</a>
+                    <a href="community.html" class="nav-item nav-link">Community</a>
+                    <a href="get-involved.html" class="nav-item nav-link">Get Involved</a>
+                    <a href="blog.html" class="nav-item nav-link">Blog</a>
+                    <a href="reports.html" class="nav-item nav-link">Reports</a>
+                    <a href="donate.html" class="nav-item nav-link nav-donate">Donate</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header / Navbar End -->
+
+    <main id="main">
+
+        <!-- OPENING Start -->
+        <section class="opening" aria-labelledby="story-title">
+            <div class="container">
+                <h1 id="story-title"><span>Where it</span><span class="indent">began</span></h1>
+                <p class="opening-intro">Before there was a programme, a plan or a name for what it would become, there was a place for young people to meet, talk and enjoy each other's company.</p>
+            </div>
+        </section>
+        <!-- OPENING End -->
+
+        <!-- CHAPTER 1: A space to connect Start -->
+        <section class="ch-begin" aria-labelledby="ch1-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="row g-5">
+                            <div class="col-md-4 reveal">
+                                <span class="chapter-no" aria-hidden="true">01</span>
+                            </div>
+                            <div class="col-md-8 reveal">
+                                <h2 id="ch1-title" class="chapter-title">A space of their own</h2>
+                                <div class="prose">
+                                    <p class="dropcap">Leafspire began as an Instagram-based social club. The idea behind it was a plain one: young people wanted somewhere to connect, to make friends, to talk and to spend time together.</p>
+                                    <p>There was no organisational structure behind it and no programme model to follow. Young people came together and made something that belonged to them.</p>
+                                    <p class="begin-aside">The friendships and the feeling of belonging were the point, and they still are.</p>
+                                    <p>Nothing about that beginning needed to be fixed or outgrown. It carries the part of Leafspire that every later idea has depended on: people who like being around each other will usually find something worth doing together.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                IMAGE PLACEHOLDER (optional): a genuine photograph or screenshot from the original Instagram social club.
+                No such image was identified in the supplied assets, so none is shown. To add one, uncomment the block below,
+                replace the src, alt text and caption, and only state facts you can confirm (no invented dates or places).
+
+                <div class="container mt-5">
+                    <figure class="col-lg-8 offset-lg-2 m-0">
+                        <img src="img/YOUR-ORIGINAL-CLUB-IMAGE.jpg" alt="DESCRIBE WHAT THE IMAGE ACTUALLY SHOWS" class="img-fluid" style="border-radius: var(--leaf-sm) 0 var(--leaf-sm) 0;" loading="lazy" decoding="async">
+                        <figcaption class="small text-muted mt-2">CAPTION: only confirmed facts</figcaption>
+                    </figure>
+                </div>
+            -->
+        </section>
+        <!-- CHAPTER 1 End -->
+
+        <!-- CHAPTER 2: The power of coming together Start -->
+        <section class="ch-together" aria-labelledby="ch2-title">
+            <div class="container">
+                <div class="row g-5 align-items-start">
+                    <div class="col-lg-6 reveal">
+                        <div class="photo-wrap">
+                            <img class="shape-a" src="img/carousel-2.jpg" alt="Young people connecting and supporting one another" width="1000" height="1250" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1 text-col reveal">
+                        <span class="chapter-no" aria-hidden="true">02</span>
+                        <h2 id="ch2-title" class="chapter-title">The power of coming together</h2>
+                        <div class="prose">
+                            <p>When young people share a space, a few things tend to follow. Conversations get longer. Opinions get tested. Someone mentions a problem they noticed on their street, and someone else says they have thought about that too.</p>
+                            <p>Those conversations turned out to matter. Friendship makes a place where it is easy to say what you think, and it showed how much energy, knowledge and creativity was already in the room.</p>
+                        </div>
+                        <p class="keep-line">The question that followed was what all of that could be used for.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CHAPTER 2 End -->
+
+        <!-- CHAPTER 3: A bigger question Start -->
+        <section class="dark-band ch-question" aria-labelledby="ch3-title">
+            <div class="container">
+                <div class="reveal">
+                    <span class="chapter-no" aria-hidden="true">03</span>
+                    <h2 id="ch3-title" class="visually-hidden">A bigger question</h2>
+                    <p class="statement">Young people should not have to wait indefinitely for <em>permission</em> to contribute.</p>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-5 offset-lg-1 reveal">
+                        <div class="prose">
+                            <p>Young people have ideas, creativity, energy and knowledge, and they are able to contribute to society in meaningful ways. Opportunities to lead, to make decisions, to start an initiative and to influence the communities around them are often harder to come by.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 reveal">
+                        <div class="prose">
+                            <p>In Kenya, as in many places, that can mean barriers to taking part, to finding opportunities and to being heard in decisions that shape young people's own futures. Leafspire does not tell this as a story about who is to blame. It is a gap, and gaps can be worked on.</p>
+                            <p>The realisation was a simple one: the future belongs to the people who will live in it, so they should be able to start building it now.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CHAPTER 3 End -->
+
+        <!-- CHAPTER 4: From connection to purpose Start -->
+        <section class="ch-evolve" aria-labelledby="ch4-title">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6 reveal">
+                        <span class="chapter-no" aria-hidden="true">04</span>
+                        <h2 id="ch4-title" class="chapter-title">From connection to purpose</h2>
+                        <div class="prose">
+                            <p>The change did not come from a single meeting or a single day. It came gradually, as the idea of bringing young people together grew into a wider commitment to leadership, environmental responsibility, community participation and wellbeing.</p>
+                            <p>The aim became larger than a place to meet. It became encouraging young people to turn their ideas into action, and to see the connection between their own futures and the future of the environment.</p>
+                        </div>
+                        <ul class="shift-list">
+                            <li><span class="from">A place for young people to meet</span><span class="to">became a place to start things</span></li>
+                            <li><span class="from">Conversations about what is wrong</span><span class="to">became connections to the issues in local communities</span></li>
+                            <li><span class="from">Ideas shared among friends</span><span class="to">became ideas that could be acted on</span></li>
+                            <li><span class="from">The future as something that arrives</span><span class="to">became something young people help shape, greener and more resilient</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1 photo-col reveal">
+                        <div class="photo-wrap flip">
+                            <img class="shape-b" src="img/about-1.jpg" alt="Young people and community members with Leafspire" width="900" height="1200" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CHAPTER 4 End -->
+
+        <!-- CHAPTER 5: Growing into Leafspire Start -->
+        <section class="ch-leafspire" aria-labelledby="ch5-title">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6 reveal">
+                        <span class="chapter-no" aria-hidden="true">05</span>
+                        <h2 id="ch5-title" class="chapter-title">Growing into Leafspire</h2>
+                        <div class="prose">
+                            <p>Today, Leafspire is a youth-led social impact initiative rooted in Kenya. It works with young people and communities to encourage practical action, to strengthen participation, to promote environmental responsibility and to build healthier, more connected communities.</p>
+                            <p>Its work sits across three connected areas.</p>
+                        </div>
+                        <ol class="areas">
+                            <li>
+                                <div>
+                                    <h3>Environmental sustainability and climate action</h3>
+                                    <p>Looking after the places people live in, and acting on the climate pressures young people will inherit.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Youth leadership and community participation</h3>
+                                    <p>Opportunities for young people to lead, take responsibility and take part in what happens around them.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Community wellbeing and social connection</h3>
+                                    <p>The relationships and sense of belonging that started it all, and that keep communities strong.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1 reveal">
+                        <div class="photo-wrap mb-5">
+                            <img class="shape-a" src="img/courses-4.png" alt="Environmental and sustainability action by young people" width="1000" height="800" loading="lazy" decoding="async">
+                        </div>
+                        <div class="tagline-block">
+                            <p class="tagline">Growing People.<span>Greening Communities.</span></p>
+                            <div class="prose">
+                                <p>The tagline describes how Leafspire sees its work. Developing people and protecting the environment belong together, because healthy communities need both.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CHAPTER 5 End -->
+
+        <!-- CHAPTER 6: The future Start -->
+        <section class="dark-band ch-future" aria-labelledby="ch6-title">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6 reveal">
+                        <span class="chapter-no" aria-hidden="true">06</span>
+                        <h2 id="ch6-title" class="statement" style="font-size: clamp(2rem, 4.6vw, 3.6rem); margin-bottom: 0;">The future we are working towards</h2>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1 reveal">
+                        <div class="prose">
+                            <p>Leafspire is still growing and still working out its shape. Where it is heading is clear: more opportunities for young people to take part, more support for environmental action, closer relationships with communities and practical contributions to sustainable development.</p>
+                            <p>The Sustainable Development Goals give that direction a shared language, covering climate action, sustainable communities, good health and wellbeing, and partnerships. They matter most where someone takes them up locally, in a neighbourhood, with the people who live there.</p>
+                            <p>The future is not something young people should wait to inherit. They should have the chance to help shape it.</p>
+                        </div>
+                        <p class="future-note">Leafspire is currently an unregistered, youth-led initiative. This page describes where it has come from and where it hopes to go, not a record of everything it has achieved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CHAPTER 6 End -->
+
+        <!-- CLOSING Start -->
+        <section class="closing" aria-labelledby="closing-title">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 reveal">
+                        <h2 id="closing-title">The story is still unfolding.</h2>
+                        <p>It will be shaped by participation, shared responsibility and practical action. Here are some ways to follow it further.</p>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1 reveal">
+                        <ul class="closing-nav">
+                            <li><a href="about.html"><span>About Leafspire<span class="sub">What we believe and where we are going</span></span><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                            <li><a href="team.html"><span>Meet our people<span class="sub">The young people behind the work</span></span><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                            <li><a href="get-involved.html"><span>Get involved<span class="sub">Ways to take part</span></span><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CLOSING End -->
+
+    </main>
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="footer-logo-link" href="index.html">
+                        <img class="footer-logo" src="img/oh1.png" alt="Leafspire logo">
+                    </a>
+                    <p class="footer-tagline">Growing People. Greening Communities.</p>
+                    <div class="footer-social">
+                        <a href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Contact</h2>
+                    <p class="contact-line"><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+254701114562">+254 701 114562</a></p>
+                    <p class="contact-line"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:leafspirefoundation@gmail.com">leafspirefoundation<wbr>@gmail.com</a></p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Explore</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="service.html">Our Work</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="merch.html">Merch</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="terms.html">Legal &amp; Governance</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Stay Connected</h2>
+                    <p>Get updates on our programmes, events and stories directly to your inbox.</p>
+                    <form id="subscribeForm">
+                        <label class="visually-hidden" for="emailInput">Your email address</label>
+                        <div class="subscribe-field">
+                            <input class="form-control" type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                    <small class="footer-note">We only send meaningful updates. No spam.</small>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="index.html">Leafspire</a>. All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a href="https://htmlcodex.com">riva.https</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Popup -->
+    <div id="leafspirePopup" class="leafspire-popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+        <div class="leafspire-popup-card">
+            <div class="leafspire-icon" aria-hidden="true">💚</div>
+            <h3 id="popupTitle">Thank You for Joining Leafspire</h3>
+            <p>You are now part of our community. Expect updates on programmes, events and stories.</p>
+            <button onclick="closePopup()" class="leafspire-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries (same as homepage) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        /* ===== BACK TO TOP ===== */
+        window.addEventListener('scroll', function () {
+            var btn = document.querySelector('.back-to-top');
+            if (!btn) return;
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        /* ===== SCROLL REVEAL (gentle, skipped when reduced motion is preferred) ===== */
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduce || !('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+            items.forEach(function (el) { io.observe(el); });
+        })();
+
+        /* ===== NEWSLETTER SUBSCRIPTION (same as homepage) ===== */
+        var form = document.getElementById("subscribeForm");
+        var popup = document.getElementById("leafspirePopup");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            var email = document.getElementById("emailInput").value;
+            try {
+                await fetch("https://formspree.io/f/xredavrk", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email })
+                });
+                popup.style.display = "flex";
+                form.reset();
+            } catch (error) {
+                alert("Something went wrong. Please try again.");
+            }
+        });
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>

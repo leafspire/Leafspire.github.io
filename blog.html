@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog | Leafspire</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="The Leafspire blog is coming soon. In the meantime, read our writing and updates on Substack and Medium.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1b4332">
+
+    <!-- SEO PLACEHOLDER: replace with the live address of this page (same value as used in index.html), keeping blog.html at the end. -->
+    <link rel="canonical" href="https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/blog.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Leafspire">
+    <meta property="og:title" content="Blog | Leafspire">
+    <meta property="og:description" content="The Leafspire blog is coming soon. In the meantime, read our writing and updates on Substack and Medium.">
+    <meta property="og:url" content="https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/blog.html">
+
+    <link rel="shortcut icon" href="img/leafspirelogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* ===== DESIGN TOKENS (same as index.html) ===== */
+        :root {
+            --green-deep:   #1b4332;
+            --green-mid:    #2d6a4f;
+            --green-main:   #40916c;
+            --green-soft:   #52b788;
+            --green-light:  #b7e4c7;
+            --green-pale:   #d8f3dc;
+            --green-mist:   #f0faf3;
+            --white:        #ffffff;
+            --dark:         #0d1b12;
+            --text-body:    #34453a;
+            --text-muted:   #5a6e61;
+            --sun:          #f0b429;
+            --sun-bright:   #ffc94d;
+            --water:        #4f9fb8;
+
+            --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+            --font-body:    'Figtree', 'Segoe UI', system-ui, sans-serif;
+
+            --transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            text-wrap: balance;
+            font-family: var(--font-display);
+            color: var(--dark);
+            line-height: 1.12;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+        }
+
+        ::selection      { background: #cfeedb; color: #0d1b12; }
+        ::-moz-selection { background: #cfeedb; color: #0d1b12; }
+
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--green-main); outline-offset: 3px; }
+        .site-footer a:focus-visible, .site-footer input:focus-visible, .site-footer button:focus-visible { outline-color: var(--sun); }
+
+        .skip-link:focus {
+            position: fixed; top: 8px; left: 8px; z-index: 10000;
+            background: #fff; color: var(--green-deep); padding: 0.6rem 1rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn { border-radius: 3px; font-weight: 600; letter-spacing: 0.01em; padding: 0.75rem 1.5rem; transition: var(--transition); }
+        .btn-primary { background-color: var(--green-mid); border-color: var(--green-mid); color: #fff; }
+        .btn-primary:hover, .btn-primary:focus { background-color: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+
+        #spinner { z-index: 9999; }
+        .spinner-grow.text-primary { color: var(--green-main) !important; }
+        .text-primary { color: var(--green-main) !important; }
+
+        /* ===== TOP BAR + NAVBAR (same as index.html) ===== */
+        .top-bar { background: var(--green-deep); padding: 8px 0; font-size: 0.82rem; letter-spacing: 0.02em; }
+        .top-bar a { color: rgba(255,255,255,0.65); transition: var(--transition); }
+        .top-bar a:hover, .top-bar a:focus { color: var(--green-light); }
+
+        .navbar { background: #ffffff !important; box-shadow: 0 2px 14px rgba(27,67,50,0.07); padding: 0.3rem 2rem; }
+        .navbar-brand { padding-top: 0; padding-bottom: 0; }
+        .navbar-logo-img { height: auto; max-height: 108px; width: auto; max-width: 420px; object-fit: contain; display: block; }
+        .nav-link { color: var(--green-deep) !important; font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0.9rem !important; transition: var(--transition); }
+        .nav-link:hover, .nav-link:focus { color: var(--green-main) !important; }
+        .nav-link.active { color: var(--green-main) !important; }
+        .nav-link.nav-donate { background: var(--green-mid); color: #fff !important; padding: 0.6rem 1.5rem !important; margin-left: 1rem; border-radius: 3px; }
+        .nav-link.nav-donate:hover, .nav-link.nav-donate:focus { background: var(--green-deep); color: #fff !important; }
+        .navbar-toggler { border-color: rgba(27,67,50,0.25) !important; }
+        .navbar-toggler-icon { filter: invert(1) brightness(0.35) sepia(1) hue-rotate(90deg) saturate(1.5); }
+
+        @media (max-width: 1199.98px) { .navbar-collapse { max-height: calc(100vh - 110px); overflow-y: auto; } }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; max-width: 320px; }
+        }
+        @media (min-width: 1200px) and (max-width: 1399.98px) {
+            .navbar-logo-img { max-height: 90px; max-width: 300px; }
+            .nav-link { padding: 1.5rem 0.6rem !important; font-size: 0.92rem; }
+            .nav-link.nav-donate { padding: 0.6rem 1.2rem !important; margin-left: 0.5rem; }
+        }
+
+        /* ===== BLOG PAGE ===== */
+        .blog-soon {
+            /* Clears the fixed header, then fills the rest of the screen so the footer never floats up the page */
+            padding: 13rem 0 7rem;
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+        }
+        .blog-soon .container { width: 100%; }
+        .soon-inner { max-width: 40rem; }
+        @media (min-width: 992px) { .soon-inner { margin-left: 8.333%; } }
+
+        .soon-mark {
+            display: block;
+            width: 0.95rem; height: 0.95rem;
+            background: var(--green-main);
+            border-radius: 0 100% 0 100%;
+            margin: 0 0 1.75rem;
+        }
+        .soon-title {
+            font-size: clamp(2.4rem, 5.2vw, 4rem);
+            font-weight: 750;
+            line-height: 1.04;
+            letter-spacing: -0.025em;
+            color: var(--green-deep);
+            margin: 0 0 1.5rem;
+        }
+        .soon-text {
+            font-size: 1.12rem;
+            line-height: 1.75;
+            color: var(--text-body);
+            max-width: 34rem;
+            margin: 0 0 3rem;
+        }
+
+        .read-list { list-style: none; margin: 0; padding: 0; max-width: 34rem; border-top: 1px solid var(--green-light); }
+        .read-list li { border-bottom: 1px solid var(--green-light); }
+        .read-link {
+            display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem;
+            padding: 1.15rem 0.25rem;
+            color: var(--green-deep); text-decoration: none;
+            transition: var(--transition);
+        }
+        .read-name { font-family: var(--font-display); font-weight: 650; font-size: 1.3rem; letter-spacing: -0.01em; }
+        .read-desc { display: block; font-size: 0.97rem; color: var(--text-muted); line-height: 1.5; margin-top: 0.1rem; }
+        .read-arrow { flex: none; font-size: 1.25rem; color: var(--green-mid); transition: transform 0.25s ease, color 0.25s ease; }
+        .read-link:hover, .read-link:focus-visible { color: var(--green-main); }
+        .read-link:hover .read-arrow, .read-link:focus-visible .read-arrow { transform: translate(3px, -3px); color: var(--green-main); }
+
+        @media (max-width: 991.98px) {
+            .blog-soon { padding: 9rem 0 5rem; min-height: 0; }
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; max-width: 320px; }
+        }
+        @media (max-width: 575.98px) {
+            .row { --bs-gutter-x: 1.5rem; }
+            .blog-soon { padding: 8rem 0 4rem; }
+            .soon-text { margin-bottom: 2.25rem; }
+            .read-name { font-size: 1.2rem; }
+        }
+
+        /* ===== FOOTER (same as index.html) ===== */
+        .site-footer { background: var(--dark); color: rgba(255,255,255,0.65); padding-top: 4.5rem; }
+        .footer-logo-link { display: inline-block; background: none; padding: 0; border-radius: 0; margin-bottom: 1.1rem; line-height: 0; }
+        .footer-logo { height: 56px; width: auto; max-width: 100%; display: block; background: none; }
+        .footer-tagline { color: rgba(255,255,255,0.85); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.35; }
+        .footer-heading { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.95); margin-bottom: 1.25rem; letter-spacing: 0; }
+        .site-footer p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 0.6rem; }
+        .site-footer a { color: rgba(255,255,255,0.72); text-decoration: none; transition: var(--transition); }
+        .site-footer a:hover, .site-footer a:focus { color: var(--green-light); }
+        .footer-links { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 1.5rem; }
+        .footer-links li { margin-bottom: 0.45rem; font-size: 0.95rem; break-inside: avoid; }
+        .footer-social { display: flex; gap: 0.5rem; }
+        .footer-social a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(82,183,136,0.3); border-radius: 3px; font-size: 0.8rem; color: var(--green-light); }
+        .footer-social a:hover, .footer-social a:focus { background: var(--green-main); border-color: var(--green-main); color: #fff; }
+
+        .contact-line { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.7rem; font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.72); }
+        .contact-line i { flex: 0 0 1.25rem; width: 1.25rem; text-align: center; line-height: inherit; color: var(--green-soft); }
+        .contact-line a { min-width: 0; overflow-wrap: anywhere; }
+
+        .subscribe-field { display: flex; flex-wrap: wrap; gap: 0.6rem; max-width: 420px; }
+        .subscribe-field .form-control {
+            flex: 1 1 13rem; min-width: 0; height: 3rem; padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.07) !important; border: 1px solid rgba(82,183,136,0.3) !important;
+            color: #fff !important; border-radius: 3px; font-size: 0.95rem;
+        }
+        .subscribe-field .form-control::placeholder { color: rgba(255,255,255,0.55); }
+        .subscribe-field .form-control:focus { border-color: var(--green-soft) !important; box-shadow: 0 0 0 3px rgba(82,183,136,0.2); }
+        .subscribe-field .btn { flex: 0 0 auto; height: 3rem; padding: 0 1.4rem; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; }
+        .footer-note { font-size: 0.85rem; color: rgba(255,255,255,0.55); display: block; margin-top: 0.7rem; }
+        .footer-bottom { background: rgba(0,0,0,0.25); margin-top: 3.5rem; padding: 1.25rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+        .footer-bottom a { color: var(--green-light); }
+        .footer-bottom a:hover, .footer-bottom a:focus { color: #fff; }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top { background: var(--green-mid) !important; border: none !important; border-radius: 4px !important; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; }
+        .back-to-top:hover { background: var(--green-deep) !important; }
+
+        /* ===== NEWSLETTER POPUP (same as index.html) ===== */
+        .leafspire-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 9999; }
+        .leafspire-popup-card { background: #fff; padding: 30px; border-radius: 6px; text-align: center; width: 90%; max-width: 420px; }
+        .leafspire-icon { font-size: 42px; margin-bottom: 10px; }
+        .leafspire-popup-card h3 { color: #1f6f4a; font-family: var(--font-body); font-size: 1.4rem; }
+        .leafspire-popup-card p { font-size: 14px; color: #444; }
+        .leafspire-btn { margin-top: 15px; padding: 10px 20px; border: none; background: #1f6f4a; color: white; border-radius: 3px; cursor: pointer; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .read-arrow { transition: none; }
+            .read-link:hover .read-arrow, .read-link:focus-visible .read-arrow { transform: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="visually-hidden-focusable skip-link" href="#main">Skip to main content</a>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Header / Navbar Start -->
+    <header class="container-fluid fixed-top px-0">
+        <div class="top-bar d-none d-lg-block">
+            <div class="px-5 text-end">
+                <small>Follow us:</small>
+                <a class="ms-3" href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="ms-3" href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                <a class="ms-3" href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                <a class="ms-3" href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-xl navbar-dark py-xl-0 px-xl-5" aria-label="Main navigation">
+            <a href="index.html" class="navbar-brand ms-4 ms-xl-0 d-flex align-items-center">
+                <img src="img/newleaf.png" alt="Leafspire home" class="navbar-logo-img">
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-xl-0 align-items-xl-center">
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="causes.html" class="nav-item nav-link">Causes</a>
+                    <a href="service.html" class="nav-item nav-link">Our Programmes</a>
+                    <a href="community.html" class="nav-item nav-link">Community</a>
+                    <a href="get-involved.html" class="nav-item nav-link">Get Involved</a>
+                    <a href="blog.html" class="nav-item nav-link active" aria-current="page">Blog</a>
+                    <a href="reports.html" class="nav-item nav-link">Reports</a>
+                    <a href="donate.html" class="nav-item nav-link nav-donate">Donate</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header / Navbar End -->
+
+    <main id="main">
+        <section class="blog-soon" aria-labelledby="blog-heading">
+            <div class="container">
+                <div class="soon-inner">
+                    <span class="soon-mark" aria-hidden="true"></span>
+                    <h1 id="blog-heading" class="soon-title">The Blog is Coming Soon.</h1>
+                    <p class="soon-text">We're working towards bringing our stories, perspectives, ideas and insights directly to this space. In the meantime, you can find our writing and updates on Substack and Medium.</p>
+
+                    <ul class="read-list">
+                        <li>
+                            <a class="read-link" href="https://substack.com/@leafspirefoundation" target="_blank" rel="noopener noreferrer">
+                                <span>
+                                    <span class="read-name">Substack</span>
+                                    <span class="read-desc">Read Leafspire on Substack.<span class="visually-hidden"> (opens in a new tab)</span></span>
+                                </span>
+                                <span class="read-arrow" aria-hidden="true">&#8599;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="read-link" href="https://medium.com/@leafspirefoundation" target="_blank" rel="noopener noreferrer">
+                                <span>
+                                    <span class="read-name">Medium</span>
+                                    <span class="read-desc">Read Leafspire on Medium.<span class="visually-hidden"> (opens in a new tab)</span></span>
+                                </span>
+                                <span class="read-arrow" aria-hidden="true">&#8599;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <a class="footer-logo-link" href="index.html">
+                        <img class="footer-logo" src="img/oh1.png" alt="Leafspire logo">
+                    </a>
+                    <p class="footer-tagline">Growing People. Greening Communities.</p>
+                    <div class="footer-social">
+                        <a href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Contact</h2>
+                    <p class="contact-line"><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+254701114562">+254 701 114562</a></p>
+                    <p class="contact-line"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:leafspirefoundation@gmail.com">leafspirefoundation<wbr>@gmail.com</a></p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Explore</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="service.html">Our Work</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="merch.html">Merch</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="terms.html">Legal &amp; Governance</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Stay Connected</h2>
+                    <p>Get updates on our programmes, events and stories directly to your inbox.</p>
+                    <form id="subscribeForm">
+                        <label class="visually-hidden" for="emailInput">Your email address</label>
+                        <div class="subscribe-field">
+                            <input class="form-control" type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                    <small class="footer-note">We only send meaningful updates. No spam.</small>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="index.html">Leafspire</a>. All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a href="https://htmlcodex.com">riva.https</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Popup -->
+    <div id="leafspirePopup" class="leafspire-popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+        <div class="leafspire-popup-card">
+            <div class="leafspire-icon" aria-hidden="true">💚</div>
+            <h3 id="popupTitle">Thank You for Joining Leafspire</h3>
+            <p>You are now part of our community. Expect updates on programmes, events and stories.</p>
+            <button onclick="closePopup()" class="leafspire-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries (same as index.html) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        /* Back to top */
+        window.addEventListener('scroll', function () {
+            var btn = document.querySelector('.back-to-top');
+            if (!btn) return;
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        /* Footer newsletter subscription (same as index.html) */
+        var form = document.getElementById("subscribeForm");
+        var popup = document.getElementById("leafspirePopup");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            var email = document.getElementById("emailInput").value;
+            try {
+                await fetch("https://formspree.io/f/xredavrk", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email })
+                });
+                popup.style.display = "flex";
+                form.reset();
+            } catch (error) {
+                alert("Something went wrong. Please try again.");
+            }
+        });
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>

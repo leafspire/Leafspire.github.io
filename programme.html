@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Programme | Leafspire</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Programme details from Leafspire, a youth-led social impact initiative in Kenya.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#1b4332">
+    <!--
+        SEO NOTE: no canonical / Open Graph URLs are set here because they depend on the published site address
+        (the same placeholder used in service.html) and on which programme is shown. js/programme-page.js updates the
+        <title> and meta description per programme. Add canonical / Open Graph once the real site URL exists.
+    -->
+
+    <link rel="shortcut icon" href="img/leafspirelogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script>document.documentElement.classList.add('js');</script>
+
+    <style>
+        /* ===== SHARED SITE STYLES =====
+           Copied unchanged from service.html, where tokens, navbar, buttons and footer are defined inline
+           (css/style.css does not contain them). If the site later moves these into one shared stylesheet,
+           delete this block and link that file instead. */
+        /* ===== DESIGN TOKENS (existing greens preserved; sun and water added as supporting colours) ===== */
+        :root {
+            --green-deep:   #1b4332;
+            --green-mid:    #2d6a4f;
+            --green-main:   #40916c;
+            --green-soft:   #52b788;
+            --green-light:  #b7e4c7;
+            --green-pale:   #d8f3dc;
+            --green-mist:   #f0faf3;
+            --white:        #ffffff;
+            --dark:         #0d1b12;
+            --text-body:    #34453a;
+            --text-muted:   #5a6e61;
+            --sun:          #f0b429;
+            --sun-bright:   #ffc94d;
+            --water:        #4f9fb8;
+
+            --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+            --font-body:    'Figtree', 'Segoe UI', system-ui, sans-serif;
+
+            /* The leaf corner: two opposite corners rounded, two square. Used on photographs and one panel as a recurring identity motif. */
+            --leaf:    clamp(48px, 9vw, 130px);
+            --leaf-sm: clamp(28px, 5vw, 64px);
+
+            --transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            text-wrap: balance;
+            font-family: var(--font-display);
+            color: var(--dark);
+            line-height: 1.12;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+        }
+
+        ::selection      { background: #cfeedb; color: #0d1b12; }
+        ::-moz-selection { background: #cfeedb; color: #0d1b12; }
+
+        /* Keyboard focus: green on light sections, gold on dark ones */
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--green-main); outline-offset: 3px; }
+        .hero-wrap a:focus-visible, .mission-band a:focus-visible, .stories-section a:focus-visible,
+        .donate-section a:focus-visible, .campaigns a:focus-visible, .site-footer a:focus-visible, .site-footer input:focus-visible,
+        .site-footer button:focus-visible { outline-color: var(--sun); }
+
+        .skip-link:focus {
+            position: fixed; top: 8px; left: 8px; z-index: 10000;
+            background: #fff; color: var(--green-deep); padding: 0.6rem 1rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn { border-radius: 3px; font-weight: 600; letter-spacing: 0.01em; padding: 0.75rem 1.5rem; transition: var(--transition); }
+        .btn-primary { background-color: var(--green-mid); border-color: var(--green-mid); color: #fff; }
+        .btn-primary:hover, .btn-primary:focus { background-color: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+        .btn-outline-primary { border-color: var(--green-mid); color: var(--green-mid); }
+        .btn-outline-primary:hover, .btn-outline-primary:focus { background-color: var(--green-mid); border-color: var(--green-mid); color: #fff; }
+        .btn-outline-light { border-color: rgba(255,255,255,0.7); }
+        .btn-outline-light:hover, .btn-outline-light:focus { background-color: #fff; color: var(--green-deep); }
+        .btn-sun { background: var(--sun); border: 1px solid var(--sun); color: #16281d; }
+        .btn-sun:hover, .btn-sun:focus { background: var(--sun-bright); border-color: var(--sun-bright); color: #16281d; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+        .text-link { color: var(--green-mid); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(45,106,79,0.35); text-underline-offset: 4px; transition: var(--transition); }
+        .text-link:hover, .text-link:focus { color: var(--green-deep); text-decoration-color: currentColor; }
+
+        #spinner { z-index: 9999; }
+        .spinner-grow.text-primary { color: var(--green-main) !important; }
+        .text-primary { color: var(--green-main) !important; }
+
+        /* ===== TOP BAR + NAVBAR (unchanged in behaviour) ===== */
+        .top-bar { background: var(--green-deep); padding: 8px 0; font-size: 0.82rem; letter-spacing: 0.02em; }
+        .top-bar a { color: rgba(255,255,255,0.65); transition: var(--transition); }
+        .top-bar a:hover, .top-bar a:focus { color: var(--green-light); }
+
+        .navbar { background: #ffffff !important; box-shadow: 0 2px 14px rgba(27,67,50,0.07); padding: 0.3rem 2rem; }
+        .navbar-brand { padding-top: 0; padding-bottom: 0; }
+        .navbar-logo-img { height: auto; max-height: 108px; width: auto; max-width: 420px; object-fit: contain; display: block; }
+        .nav-link { color: var(--green-deep) !important; font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0.9rem !important; transition: var(--transition); }
+        .nav-link:hover, .nav-link:focus { color: var(--green-main) !important; }
+        .nav-link.nav-donate { background: var(--green-mid); color: #fff !important; padding: 0.6rem 1.5rem !important; margin-left: 1rem; border-radius: 3px; }
+        .nav-link.nav-donate:hover, .nav-link.nav-donate:focus { background: var(--green-deep); color: #fff !important; }
+        .navbar-toggler { border-color: rgba(27,67,50,0.25) !important; }
+        .navbar-toggler-icon { filter: invert(1) brightness(0.35) sepia(1) hue-rotate(90deg) saturate(1.5); }
+
+        /* ===== SHARED SECTION STYLES ===== */
+        .sec { padding: 7rem 0; }
+        .sec-mist { background: var(--green-mist); }
+        .h-section { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 1.4rem; }
+        .lead-copy { font-size: 1.08rem; line-height: 1.75; color: var(--text-body); max-width: 38rem; }
+
+        /* ===== FOOTER ===== */
+        .site-footer { background: var(--dark); color: rgba(255,255,255,0.65); padding-top: 4.5rem; }
+        /* Logo: the old white panel (background + padding + radius) is removed so the logo sits directly on the dark footer */
+        .footer-logo-link { display: inline-block; background: none; padding: 0; border-radius: 0; margin-bottom: 1.1rem; line-height: 0; }
+        .footer-logo { height: 56px; width: auto; max-width: 100%; display: block; background: none; }
+        .footer-tagline { color: rgba(255,255,255,0.85); font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.35; }
+        .footer-heading { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.95); margin-bottom: 1.25rem; letter-spacing: 0; }
+        .site-footer p { font-size: 0.95rem; color: rgba(255,255,255,0.65); margin-bottom: 0.6rem; }
+        .site-footer a { color: rgba(255,255,255,0.72); text-decoration: none; transition: var(--transition); }
+        .site-footer a:hover, .site-footer a:focus { color: var(--green-light); }
+        .footer-links { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 1.5rem; }
+        .footer-links li { margin-bottom: 0.45rem; font-size: 0.95rem; break-inside: avoid; }
+        .footer-social { display: flex; gap: 0.5rem; }
+        .footer-social a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(82,183,136,0.3); border-radius: 3px; font-size: 0.8rem; color: var(--green-light); }
+        .footer-social a:hover, .footer-social a:focus { background: var(--green-main); border-color: var(--green-main); color: #fff; }
+
+        /* Contact lines: icon and text sit in a flex row, so a long email address wraps beside the icon instead of running under it */
+        .contact-line { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.7rem; font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.72); }
+        .contact-line i { flex: 0 0 1.25rem; width: 1.25rem; text-align: center; line-height: inherit; color: var(--green-soft); }
+        .contact-line a { min-width: 0; overflow-wrap: anywhere; }
+
+        /* Subscribe form: input and button share a flex row, so nothing is positioned on top of anything else */
+        .subscribe-field { display: flex; flex-wrap: wrap; gap: 0.6rem; max-width: 420px; }
+        .subscribe-field .form-control {
+            flex: 1 1 13rem; min-width: 0; height: 3rem; padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.07) !important; border: 1px solid rgba(82,183,136,0.3) !important;
+            color: #fff !important; border-radius: 3px; font-size: 0.95rem;
+        }
+        .subscribe-field .form-control::placeholder { color: rgba(255,255,255,0.55); }
+        .subscribe-field .form-control:focus { border-color: var(--green-soft) !important; box-shadow: 0 0 0 3px rgba(82,183,136,0.2); }
+        .subscribe-field .btn { flex: 0 0 auto; height: 3rem; padding: 0 1.4rem; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; }
+        .footer-note { font-size: 0.85rem; color: rgba(255,255,255,0.55); display: block; margin-top: 0.7rem; }
+        .footer-bottom { background: rgba(0,0,0,0.25); margin-top: 3.5rem; padding: 1.25rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+        .footer-bottom a { color: var(--green-light); }
+        .footer-bottom a:hover, .footer-bottom a:focus { color: #fff; }
+
+
+        /* ===== NAV: eight items need the full menu to collapse until 1200px ===== */
+        @media (max-width: 1199.98px) { .navbar-collapse { max-height: calc(100vh - 110px); overflow-y: auto; } }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; max-width: 320px; }
+        }
+        @media (min-width: 1200px) and (max-width: 1399.98px) {
+            .navbar-logo-img { max-height: 90px; max-width: 300px; }
+            .nav-link { padding: 1.5rem 0.6rem !important; font-size: 0.92rem; }
+            .nav-link.nav-donate { padding: 0.6rem 1.2rem !important; margin-left: 0.5rem; }
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top { background: var(--green-mid) !important; border: none !important; border-radius: 4px !important; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; }
+        .back-to-top:hover { background: var(--green-deep) !important; }
+
+        /* ===== NEWSLETTER POPUP (existing behaviour) ===== */
+        .leafspire-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 9999; }
+        .leafspire-popup-card { background: #fff; padding: 30px; border-radius: 6px; text-align: center; width: 90%; max-width: 420px; }
+        .leafspire-icon { font-size: 42px; margin-bottom: 10px; }
+        .leafspire-popup-card h3 { color: #1f6f4a; font-family: var(--font-body); font-size: 1.4rem; }
+        .leafspire-popup-card p { font-size: 14px; color: #444; }
+        .leafspire-btn { margin-top: 15px; padding: 10px 20px; border: none; background: #1f6f4a; color: white; border-radius: 3px; cursor: pointer; }
+
+        /* Navbar responsive rules (same as service.html) */
+        @media (max-width: 991.98px) {
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; max-width: 320px; }
+        }
+        @media (max-width: 575.98px) {
+            .row { --bs-gutter-x: 1.5rem; }
+            .btn-row .btn { flex: 1 1 auto; text-align: center; }
+        }
+
+        /* ===== PROGRAMME DETAIL PAGE ===== */
+        :root { --rule: rgba(27,67,50,0.22); }
+        .nav-link[aria-current="page"], .nav-link[aria-current="true"] { color: var(--green-main) !important; }
+        .nav-link.nav-donate[aria-current="page"] { color: #fff !important; }
+
+        /* Return link */
+        .back-link { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; font-weight: 600; color: var(--green-mid); text-decoration: none; transition: var(--transition); }
+        .back-link svg { width: 1.15rem; height: 1.15rem; transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .back-link:hover, .back-link:focus-visible { color: var(--green-deep); }
+        .back-link:hover svg, .back-link:focus-visible svg { transform: translateX(-4px); }
+
+        /* Introduction: a mist-green band, with the title left and a leaf-cornered panel right */
+        .p-hero { background: var(--green-mist); padding: clamp(8.5rem, 14vw, 11rem) 0 clamp(3rem, 6vw, 5rem); }
+        .p-hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: end; margin-top: clamp(2rem, 4vw, 3.5rem); }
+        .p-hero-grid.no-visual { grid-template-columns: minmax(0, 1fr); }
+        .p-hero-grid.no-visual .p-visual { display: none; }
+        .p-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 1.25rem; margin: 0 0 1.4rem; font-size: 0.92rem; font-weight: 600; color: var(--green-mid); }
+        .p-eyebrow span:not([hidden]) ~ span:not([hidden])::before { content: ""; display: inline-block; width: 2rem; height: 1px; margin-right: 1.25rem; vertical-align: middle; background: currentColor; }
+        .p-title { margin: 0; font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: 0.98; letter-spacing: -0.035em; color: var(--green-deep); overflow-wrap: break-word; }
+        .p-intro { margin: 1.75rem 0 0; max-width: 36rem; font-size: 1.15rem; line-height: 1.75; }
+
+        .p-visual { --tone: var(--green-mid); position: relative; aspect-ratio: 4 / 5; max-height: 30rem; width: 100%; overflow: hidden; background: var(--tone); border-radius: var(--leaf) 0 var(--leaf) 0; }
+        .p-visual[data-tone="deep"]  { --tone: var(--green-deep); }
+        .p-visual[data-tone="mid"]   { --tone: var(--green-mid); }
+        .p-visual[data-tone="main"]  { --tone: var(--green-main); }
+        .p-visual[data-tone="water"] { --tone: #3b7f96; }
+        .p-visual svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .p-visual-num { position: absolute; left: 1.5rem; bottom: 1rem; font-family: var(--font-display); font-weight: 800; font-size: clamp(4rem, 9vw, 7.5rem); line-height: 1; letter-spacing: -0.04em; color: rgba(216,243,220,0.92); font-variant-numeric: tabular-nums; }
+        .p-visual img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
+        .p-visual.has-image .p-visual-num { display: none; }
+
+        /* Content sections: heading in a left column, content on the right, separated by thin rules */
+        .p-body { padding-top: clamp(1rem, 3vw, 2rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
+        .psec { padding: clamp(3rem, 6vw, 4.75rem) 0; }
+        .psec:not([hidden]) ~ .psec:not([hidden]) { border-top: 1px solid var(--rule); }
+        .psec-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); }
+        .psec h2 { margin: 0; font-size: clamp(1.7rem, 2.8vw, 2.4rem); letter-spacing: -0.025em; }
+        .psec-head { align-self: start; }
+        .psec-intro { max-width: 40rem; margin: 0 0 2rem; }
+        .psec-intro p { margin: 0 0 1rem; }
+        .psec-intro p:last-child { margin-bottom: 0; }
+        .psec-intro:empty { display: none; }
+
+        .prose { max-width: 40rem; }
+        .prose p { margin: 0 0 1.3rem; }
+        .prose p:last-child { margin-bottom: 0; }
+        .prose p:first-child { font-size: 1.2rem; line-height: 1.7; color: var(--dark); }
+
+        /* Lists: one markup pattern, three quiet variations */
+        .p-list { list-style: none; margin: 0; padding: 0; max-width: 42rem; }
+        .p-list li { padding: 1.4rem 0; border-top: 1px solid var(--rule); }
+        .p-list li:first-child { padding-top: 0; border-top: 0; }
+        .p-list li:last-child { padding-bottom: 0; }
+        .p-list h3 { margin: 0 0 0.4rem; font-size: 1.3rem; letter-spacing: -0.015em; }
+        .p-list p { margin: 0; }
+        .p-list h3:only-child { margin: 0; }
+
+        /* Objectives: numbered */
+        .p-list--num { counter-reset: item; }
+        .p-list--num li { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); counter-increment: item; }
+        .p-list--num li > * { grid-column: 2; }
+        .p-list--num li::before { content: counter(item, decimal-leading-zero); padding-top: 0.2rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--green-mid); font-variant-numeric: tabular-nums; }
+
+        /* Activities: title left, description right */
+        .p-list--rows { max-width: none; }
+        .p-list--rows li { display: grid; grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr); column-gap: 2rem; align-items: baseline; }
+        .p-list--rows h3 { margin: 0; }
+        .p-list--rows li > p:only-child { grid-column: 1 / -1; }
+
+        /* Audience and outcomes: simple lines with a short green dash */
+        .p-list--plain li { position: relative; padding: 0.85rem 0 0.85rem 1.9rem; border-top: 0; }
+        .p-list--plain li:first-child { padding-top: 0.2rem; }
+        .p-list--plain li::before { content: ""; position: absolute; left: 0; top: 1.7rem; width: 1rem; height: 2px; background: var(--green-main); }
+        .p-list--plain li:first-child::before { top: 1.05rem; }
+        .p-list--plain h3 { font-size: 1.15rem; margin-bottom: 0.2rem; }
+
+        .p-note { max-width: 38rem; margin: 2.25rem 0 0; padding-left: 1rem; border-left: 2px solid var(--green-light); font-size: 0.95rem; line-height: 1.65; color: var(--text-muted); }
+
+        /* Related programmes and return */
+        .p-end { background: var(--green-mist); padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+        .p-end-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; }
+        .p-end h2 { margin: 0; font-size: clamp(1.7rem, 2.8vw, 2.4rem); letter-spacing: -0.025em; }
+        .rel-list { list-style: none; margin: 0 0 2.5rem; padding: 0; border-top: 1px solid var(--rule); }
+        .rel-list li { border-bottom: 1px solid var(--rule); }
+        .rel-row { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 2rem; align-items: center; column-gap: 1rem; padding: 1.25rem 0.25rem; color: var(--dark); text-decoration: none; transition: var(--transition); }
+        .rel-num { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--green-mid); font-variant-numeric: tabular-nums; }
+        .rel-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 2.2vw, 1.75rem); letter-spacing: -0.02em; line-height: 1.15; }
+        .rel-arrow { justify-self: end; width: 1.6rem; height: 1.6rem; color: var(--green-deep); transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .rel-row:hover .rel-name, .rel-row:focus-visible .rel-name { color: var(--green-mid); }
+        .rel-row:hover .rel-arrow, .rel-row:focus-visible .rel-arrow { transform: translateX(0.35rem); }
+        .rel-row:focus-visible { outline: 3px solid var(--green-main); outline-offset: -3px; }
+
+        .p-notice { max-width: 38rem; }
+
+        @media (max-width: 991.98px) {
+            .p-hero-grid { grid-template-columns: minmax(0, 1fr); align-items: start; }
+            .p-visual { aspect-ratio: 16 / 9; max-height: none; border-radius: var(--leaf-sm) 0 var(--leaf-sm) 0; }
+            .psec-grid, .p-end-grid { grid-template-columns: minmax(0, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .psec-head { position: sticky; top: 10rem; }
+        }
+        @media (max-width: 575.98px) {
+            .p-eyebrow { flex-direction: column; align-items: flex-start; }
+            .p-eyebrow span:not([hidden]) ~ span:not([hidden])::before { display: none; }
+        }
+        @media (max-width: 767.98px) {
+            .p-list--rows li { grid-template-columns: minmax(0, 1fr); row-gap: 0.3rem; }
+            .p-list--num li { grid-template-columns: 2.4rem minmax(0, 1fr); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .back-link svg, .rel-arrow { transition: none; }
+            .back-link:hover svg, .back-link:focus-visible svg, .rel-row:hover .rel-arrow, .rel-row:focus-visible .rel-arrow { transform: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="visually-hidden-focusable skip-link" href="#main">Skip to main content</a>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading</span></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Header / Navbar Start -->
+    <header class="container-fluid fixed-top px-0">
+        <div class="top-bar d-none d-lg-block">
+            <div class="px-5 text-end">
+                <small>Follow us:</small>
+                <a class="ms-3" href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="ms-3" href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                <a class="ms-3" href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                <a class="ms-3" href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-xl navbar-dark py-xl-0 px-xl-5" aria-label="Main navigation">
+            <a href="index.html" class="navbar-brand ms-4 ms-xl-0 d-flex align-items-center">
+                <img src="img/newleaf.png" alt="Leafspire home" class="navbar-logo-img">
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-xl-0 align-items-xl-center">
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="causes.html" class="nav-item nav-link">Causes</a>
+                    <a href="service.html" class="nav-item nav-link" aria-current="true">Our Programmes</a>
+                    <a href="community.html" class="nav-item nav-link">Community</a>
+                    <a href="get-involved.html" class="nav-item nav-link">Get Involved</a>
+                    <a href="blog.html" class="nav-item nav-link">Blog</a>
+                    <a href="reports.html" class="nav-item nav-link">Reports</a>
+                    <a href="donate.html" class="nav-item nav-link nav-donate">Donate</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header / Navbar End -->
+
+    <main id="main">
+
+        <!--
+            PROGRAMME TEMPLATE: one page for all six programmes.
+            URL:  programme.html?id=<slug>   (slugs: green-schooled, the-next-meta, suscomm, youth-4-youth, afya-mtaani, civic-lore)
+                  The older ?programme=<slug> used by the links in service.html is also accepted.
+            Content is filled in by js/programme-page.js from window.LEAFSPIRE_PROGRAMMES (js/programmes.js).
+            Hooks for JavaScript are the ids beginning "programme-". Every content section starts with the
+            hidden attribute and is revealed only when that programme has content for it, so sections are optional.
+            Nothing programme-specific is written in this file.
+        -->
+
+        <article id="programme" data-state="loading" aria-labelledby="programme-title">
+
+            <!-- INTRODUCTION Start -->
+            <section class="p-hero">
+                <div class="container">
+                    <a class="back-link" href="service.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M21 12H4M10 6l-6 6 6 6"/></svg>
+                        All programmes
+                    </a>
+                    <div class="p-hero-grid" id="programme-hero-grid">
+                        <div>
+                            <p class="p-eyebrow" id="programme-eyebrow" hidden>
+                                <span id="programme-category" hidden></span>
+                                <span id="programme-number" hidden></span>
+                            </p>
+                            <h1 class="p-title" id="programme-title">Programme</h1>
+                            <p class="p-intro" id="programme-intro" hidden></p>
+                        </div>
+                        <!-- Visual identity: a leaf-cornered panel with the programme number. data-tone = deep | mid | main | water. An optional photograph is laid over it. -->
+                        <div class="p-visual" id="programme-visual" data-tone="mid" aria-hidden="true">
+                            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(250 520) rotate(-12)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" transform="scale(3.1)" fill="#b7e4c7" fill-opacity="0.2"/></g></svg>
+                            <span class="p-visual-num" id="programme-visual-num"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- INTRODUCTION End -->
+
+            <!-- CONTENT SECTIONS Start (each is optional) -->
+            <div class="container p-body">
+
+                <section class="psec" id="programme-overview" aria-labelledby="programme-overview-heading" hidden>
+                    <div class="psec-grid">
+                        <div class="psec-head"><h2 id="programme-overview-heading">Overview</h2></div>
+                        <div>
+                            <div class="prose" id="programme-overview-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="psec" id="programme-objectives" aria-labelledby="programme-objectives-heading" hidden>
+                    <div class="psec-grid">
+                        <div class="psec-head"><h2 id="programme-objectives-heading">Objectives and focus areas</h2></div>
+                        <div>
+                            <div class="psec-intro" id="programme-objectives-intro"></div>
+                            <ol class="p-list p-list--num" id="programme-objectives-list"></ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="psec" id="programme-activities" aria-labelledby="programme-activities-heading" hidden>
+                    <div class="psec-grid">
+                        <div class="psec-head"><h2 id="programme-activities-heading">Activities and approach</h2></div>
+                        <div>
+                            <div class="psec-intro" id="programme-activities-intro"></div>
+                            <ul class="p-list p-list--rows" id="programme-activities-list"></ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="psec" id="programme-audience" aria-labelledby="programme-audience-heading" hidden>
+                    <div class="psec-grid">
+                        <div class="psec-head"><h2 id="programme-audience-heading">Who the programme is for</h2></div>
+                        <div>
+                            <div class="psec-intro" id="programme-audience-intro"></div>
+                            <ul class="p-list p-list--plain" id="programme-audience-list"></ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="psec" id="programme-outcomes" aria-labelledby="programme-outcomes-heading" hidden>
+                    <div class="psec-grid">
+                        <div class="psec-head"><h2 id="programme-outcomes-heading">Expected outcomes</h2></div>
+                        <div>
+                            <div class="psec-intro" id="programme-outcomes-intro"></div>
+                            <ul class="p-list p-list--plain" id="programme-outcomes-list"></ul>
+                            <!-- Default wording keeps intended outcomes from reading as achievements. Can be replaced per programme with outcomes.note. -->
+                            <p class="p-note" id="programme-outcomes-note">These are the changes the programme aims to contribute to. They are intended outcomes, not verified results.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <!-- CONTENT SECTIONS End -->
+
+            <!-- RELATED + RETURN Start -->
+            <section class="p-end" aria-labelledby="programme-related-heading">
+                <div class="container">
+                    <div class="p-end-grid">
+                        <div><h2 id="programme-related-heading">Other programmes</h2></div>
+                        <div>
+                            <ol class="rel-list" id="programme-related-list" hidden></ol>
+                            <a class="btn btn-outline-primary" href="service.html">Back to all programmes</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- RELATED + RETURN End -->
+
+        </article>
+
+        <noscript>
+            <div class="container py-5">
+                <p class="p-notice">Programme details need JavaScript to load. Please enable it, or return to the <a class="text-link" href="service.html">programmes page</a>.</p>
+            </div>
+        </noscript>
+
+    </main>
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <!-- The white panel behind the logo has been removed: the logo now sits directly on the dark footer. -->
+                    <a class="footer-logo-link" href="index.html">
+                        <img class="footer-logo" src="img/oh1.png" alt="Leafspire logo">
+                    </a>
+                    <p class="footer-tagline">Growing People. Greening Communities.</p>
+                    <div class="footer-social">
+                        <a href="https://x.com/Leafspire" aria-label="Leafspire on X"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61590070211326" aria-label="Leafspire on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@leafspirefoundation?si=TQPvzIE116SsMQAR" aria-label="Leafspire on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/leafspirefoundation/" aria-label="Leafspire on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Contact</h2>
+                    <p class="contact-line"><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+254701114562">+254 701 114562</a></p>
+                    <p class="contact-line"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:leafspirefoundation@gmail.com">leafspirefoundation<wbr>@gmail.com</a></p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Explore</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="causes.html">Causes</a></li>
+                        <li><a href="service.html">Our Work</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="merch.html">Merch</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="terms.html">Legal &amp; Governance</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h2 class="footer-heading">Stay Connected</h2>
+                    <p>Get updates on our programmes, events and stories directly to your inbox.</p>
+                    <form id="subscribeForm">
+                        <label class="visually-hidden" for="emailInput">Your email address</label>
+                        <div class="subscribe-field">
+                            <input class="form-control" type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                    <small class="footer-note">We only send meaningful updates. No spam.</small>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="index.html">Leafspire</a>. All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a href="https://htmlcodex.com">riva.https</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Popup -->
+    <div id="leafspirePopup" class="leafspire-popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+        <div class="leafspire-popup-card">
+            <div class="leafspire-icon" aria-hidden="true">💚</div>
+            <h3 id="popupTitle">Thank You for Joining Leafspire</h3>
+            <p>You are now part of our community. Expect updates on programmes, events and stories.</p>
+            <button onclick="closePopup()" class="leafspire-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries (unchanged) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        /* ===== BACK TO TOP (same as service.html) ===== */
+        window.addEventListener('scroll', function () {
+            var btn = document.querySelector('.back-to-top');
+            if (!btn) return;
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+
+        /* ===== NEWSLETTER SUBSCRIPTION (same as service.html) ===== */
+        var form = document.getElementById("subscribeForm");
+        var popup = document.getElementById("leafspirePopup");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            var email = document.getElementById("emailInput").value;
+            try {
+                await fetch("https://formspree.io/f/xredavrk", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email })
+                });
+                popup.style.display = "flex";
+                form.reset();
+            } catch (error) {
+                alert("Something went wrong. Please try again.");
+            }
+        });
+
+        function closePopup() {
+            popup.style.display = "none";
+        }
+    </script>
+
+    <!-- Programme content: data (js/programmes.js, to be written) then the renderer -->
+    <script src="js/programmes.js"></script>
+    <script src="js/programme-page.js"></script>
+</body>
+
+</html>
