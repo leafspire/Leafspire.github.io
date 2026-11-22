@@ -198,7 +198,7 @@ main { overflow-x: clip; }
 .cm-who { background: var(--green-deep); color: rgba(255,255,255,.86); padding: 6.5rem 0; border-top-left-radius: var(--leaf); }
 .cm-who .wrap { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; }
 .cm-who h2 { color: #fff; font-size: clamp(2.2rem, 4.4vw, 3.6rem); margin: 0 0 1.5rem; }
-.cm-who .sticky { position: sticky; top: 9rem; align-self: start; }
+.cm-who .sticky { position: sticky; top: 10rem; align-self: start; }
 .cm-who .people { font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 500; line-height: 1.45; color: var(--green-light); margin: 2rem 0 0; }
 .cm-who .people span { color: #fff; }
 .collage { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
@@ -243,7 +243,7 @@ main { overflow-x: clip; }
 .audiences { font-family: var(--font-display); font-size: 1.15rem; color: var(--green-mid); margin: 0 0 1.5rem; }
 
 @media (max-width: 991.98px) {
-  .cm-hero { padding-top: 8.5rem; }
+  .cm-hero { padding: calc(var(--header-h) + 2.5rem) 0 3.5rem; }
   .cm-hero .wrap, .cm-who .wrap, .cm-ways .head, .cm-online .wrap, .cm-join .wrap { display: block; }
   .cm-hero .hero-img-1 { margin: 2rem 0 0 18%; }
   .cm-hero .hero-img-2 { margin-top: -3rem; width: 55%; position: relative; }
@@ -259,6 +259,58 @@ main { overflow-x: clip; }
 }
 @media (prefers-reduced-motion: reduce) { .way, .socials a { transition: none; } .socials a:hover { transform: none; } }
 
+
+        /* ===== RESPONSIVE HEADER + FOOTER FIXES (shared block, identical on community, contact and donate) =====
+           --header-h is the (upper-bound) height of the fixed header at each breakpoint. Heroes use it below 992px
+           so the heading can never start underneath the header, and scroll-padding-top keeps #anchor targets clear of it. */
+        :root { --header-h: 9.25rem; }
+        @media (max-width: 1399.98px) { :root { --header-h: 8.25rem; } }
+        @media (max-width: 991.98px)  { :root { --header-h: 6rem; } }
+        @media (max-width: 575.98px)  { :root { --header-h: 5rem; } }
+        html { scroll-padding-top: calc(var(--header-h) + 0.5rem); }
+
+        @media (max-width: 1199.98px) {
+            /* Brand may shrink so the logo and hamburger always share one row (previously a wide logo pushed the toggler onto a second line) */
+            .navbar-brand { min-width: 0; max-width: calc(100% - 7.5rem); }
+            .navbar-logo-img { min-width: 0; max-width: min(100%, 320px); }
+            .navbar-collapse { max-height: calc(100vh - var(--header-h)); max-height: calc(100dvh - var(--header-h)); overflow-y: auto; }
+        }
+        @media (max-width: 991.98px) {
+            /* community.html was missing these tablet/phone header rules that contact and donate already had */
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; }
+        }
+        @media (max-width: 575.98px) {
+            .navbar { padding: 0.4rem 0.75rem; }
+            .navbar .navbar-brand { margin-left: 0 !important; margin-right: 0.5rem; max-width: calc(100% - 4rem); }
+            .navbar .navbar-toggler { margin-right: 0 !important; }
+            .navbar-logo-img { max-height: 64px; }
+            .row { --bs-gutter-x: 1.5rem; }
+        }
+        @media (max-width: 991.98px) {
+            .subscribe-field .form-control { font-size: 1rem; } /* 16px stops iOS zooming the page on focus */
+        }
+        @media (max-width: 767.98px) {
+            .footer-social a { width: 44px; height: 44px; }
+            .footer-links li { margin-bottom: 0; }
+            .footer-links a { display: inline-block; padding: 0.55rem 0; }
+        }
+
+        /* ===== COMMUNITY: remaining mobile corrections ===== */
+        @media (max-width: 991.98px) {
+            .cm-who, .cm-online { padding: 4.75rem 0; }
+            .cm-ways { padding: 4.75rem 0 4rem; }
+            .cm-join { padding: 5.5rem 0 4.75rem; }
+            .cm-hero .hero-copy .text-link, .way .go { display: inline-block; padding: 0.4rem 0; }
+        }
+        @media (max-width: 575.98px) {
+            .cm-hero h1 { font-size: clamp(2.8rem, 12vw, 3.3rem); overflow-wrap: break-word; }
+            .collage { gap: 0.9rem; }
+            .wa { padding: 1.6rem 1.35rem; }
+            .btn-row .btn { flex: 1 1 auto; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -368,6 +420,7 @@ main { overflow-x: clip; }
     rel="noopener noreferrer"
   >Join on WhatsApp</a>
 </div>
+  </div>
 </section>
 
 <section class="cm-join" aria-labelledby="join-h">
