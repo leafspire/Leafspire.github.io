@@ -189,7 +189,16 @@
         .leafspire-btn { margin-top: 15px; padding: 10px 20px; border: none; background: #1f6f4a; color: white; border-radius: 3px; cursor: pointer; }
 
         
-        /* ===== MERCH PAGE ===== */
+        /* ===== SHARED SECTION STYLES =====
+   merch.html used these classes (.sec, .sec-mist, .h-section, .lead-copy) without defining them, so on every screen
+   size those sections had no padding, no mist background and an unsized heading. These are the same rules, with
+   the same values, that programme.html carries (copied from service.html). */
+.sec { padding: 7rem 0; }
+.sec-mist { background: var(--green-mist); }
+.h-section { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 1.4rem; }
+.lead-copy { font-size: 1.08rem; line-height: 1.75; color: var(--text-body); max-width: 38rem; }
+
+/* ===== MERCH PAGE ===== */
 .m-hero { padding: 11rem 0 6rem; background: var(--green-mist); overflow: hidden; }
 .m-hero h1 { font-size: clamp(3rem, 7.4vw, 6.6rem); font-weight: 750; line-height: 0.98; letter-spacing: -0.03em; margin: 0 0 1.6rem; color: var(--green-deep); }
 .m-hero p.intro-copy { font-size: 1.12rem; max-width: 32rem; margin: 0 0 2rem; }
@@ -256,7 +265,7 @@
     .nav-link { padding: 0.6rem 1rem !important; }
     .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
     .navbar-logo-img { max-height: 80px; max-width: 320px; }
-    .m-hero { padding: 7.5rem 0 4rem; }
+    .m-hero { padding: 8rem 0 4rem; }
     .collage { margin-top: 2.5rem; }
     .sec, .sec-dark, .growing, .enquire { padding: 4.75rem 0; }
 }
@@ -265,6 +274,52 @@
     .btn-row .btn { flex: 1 1 auto; text-align: center; }
 }
 
+        /* =====================================================================
+           RESPONSIVE CORRECTIONS (identical block on merch, programme and reports)
+           Header, anchors, tap targets and footer. Safe to move into css/style.css
+           later; nothing here changes the desktop appearance.
+           ===================================================================== */
+
+        /* Anchor links (#collection, #enquire, #main) stop below the fixed header instead of beneath it */
+        html { scroll-padding-top: 6.5rem; }
+        @media (min-width: 992px) { html { scroll-padding-top: 10rem; } }
+
+        /* Open mobile menu: leave room for the header it sits inside. Under 992px the header is the navbar only (about 93px);
+           from 992px to 1199px the top bar is also showing (about 131px). dvh follows the real visible height on phones. */
+        @media (max-width: 1199.98px) {
+            .navbar-collapse { max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px); overflow-y: auto; }
+        }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .navbar-collapse { max-height: calc(100vh - 140px); max-height: calc(100dvh - 140px); }
+        }
+
+        /* Hamburger: a comfortable tap target, never shrunk by the logo */
+        @media (max-width: 991.98px) {
+            .navbar > .navbar-toggler { flex: none; min-width: 44px; min-height: 44px; }
+        }
+
+        /* Phones: the logo, its side margins and the hamburger used to add up to more than the screen, so the hamburger
+           wrapped onto a second row and the header grew taller. Side margins now match the page gutter and the logo
+           scales (keeping its proportions) into whatever width is left beside the hamburger. */
+        @media (max-width: 575.98px) {
+            .navbar { padding: 0.4rem 0.75rem; }
+            .navbar > .navbar-brand { margin-left: 0 !important; margin-right: 0.75rem; min-width: 0; }
+            .navbar > .navbar-toggler { margin-right: 0 !important; }
+            .navbar-logo-img { max-width: min(320px, calc(100vw - 6rem)); }
+        }
+
+        /* Touch devices and phones: larger footer tap targets, same look */
+        @media (max-width: 575.98px) {
+            .footer-social a { width: 40px; height: 40px; }
+            .footer-links li { margin-bottom: 0.15rem; }
+            .footer-links a { display: inline-block; padding: 0.3rem 0; }
+        }
+
+        /* Merch: tighter collage gutters on phones so the three photographs are not cramped */
+        @media (max-width: 575.98px) {
+            .collage, .collage .col2 { gap: 0.85rem; }
+            .collage .col2 { padding-bottom: 1.5rem; }
+        }
     </style>
 </head>
 
