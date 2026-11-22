@@ -286,7 +286,7 @@
         }
 
         @media (max-width: 991.98px) {
-            .masthead { padding: 8.5rem 0 4.5rem; }
+            .masthead { padding: calc(var(--header-h) + 2.5rem) 0 4.5rem; }
             .masthead-media { margin-top: 1rem; }
             .masthead-media img { aspect-ratio: 4 / 3; }
             .navbar { padding: 0.4rem 1rem; }
@@ -303,6 +303,55 @@
             .contact-card { padding: 1.5rem 1.25rem 1.1rem; }
         }
         @media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
+
+        /* ===== RESPONSIVE HEADER + FOOTER FIXES (shared block, identical on community, contact and donate) =====
+           --header-h is the (upper-bound) height of the fixed header at each breakpoint. Heroes use it below 992px
+           so the heading can never start underneath the header, and scroll-padding-top keeps #anchor targets clear of it. */
+        :root { --header-h: 9.25rem; }
+        @media (max-width: 1399.98px) { :root { --header-h: 8.25rem; } }
+        @media (max-width: 991.98px)  { :root { --header-h: 6rem; } }
+        @media (max-width: 575.98px)  { :root { --header-h: 5rem; } }
+        html { scroll-padding-top: calc(var(--header-h) + 0.5rem); }
+
+        @media (max-width: 1199.98px) {
+            /* Brand may shrink so the logo and hamburger always share one row (previously a wide logo pushed the toggler onto a second line) */
+            .navbar-brand { min-width: 0; max-width: calc(100% - 7.5rem); }
+            .navbar-logo-img { min-width: 0; max-width: min(100%, 320px); }
+            .navbar-collapse { max-height: calc(100vh - var(--header-h)); max-height: calc(100dvh - var(--header-h)); overflow-y: auto; }
+        }
+        @media (max-width: 991.98px) {
+            /* community.html was missing these tablet/phone header rules that contact and donate already had */
+            .navbar { padding: 0.4rem 1rem; }
+            .nav-link { padding: 0.6rem 1rem !important; }
+            .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
+            .navbar-logo-img { max-height: 80px; }
+        }
+        @media (max-width: 575.98px) {
+            .navbar { padding: 0.4rem 0.75rem; }
+            .navbar .navbar-brand { margin-left: 0 !important; margin-right: 0.5rem; max-width: calc(100% - 4rem); }
+            .navbar .navbar-toggler { margin-right: 0 !important; }
+            .navbar-logo-img { max-height: 64px; }
+            .row { --bs-gutter-x: 1.5rem; }
+        }
+        @media (max-width: 991.98px) {
+            .subscribe-field .form-control { font-size: 1rem; } /* 16px stops iOS zooming the page on focus */
+        }
+        @media (max-width: 767.98px) {
+            .footer-social a { width: 44px; height: 44px; }
+            .footer-links li { margin-bottom: 0; }
+            .footer-links a { display: inline-block; padding: 0.55rem 0; }
+        }
+
+        /* ===== DONATE: remaining mobile corrections ===== */
+        main { overflow-x: clip; }
+        @media (max-width: 575.98px) {
+            /* decorative panels no longer poke past the viewport edge (caused sideways scrolling) */
+            .photo-panel::before { left: -0.75rem; }
+            .photo-panel.alt::before { right: -0.75rem; }
+            .masthead h1 { overflow-wrap: break-word; }
+        }
+        @media (max-width: 359.98px) { .masthead h1 { font-size: 2.35rem; } }
+        .steps a, .contact-card a { overflow-wrap: anywhere; } /* long email address wraps instead of being clipped */
     </style>
 </head>
 
