@@ -274,103 +274,105 @@
         .nav-link[aria-current="page"] { color: var(--green-main) !important; }
         .nav-link.nav-donate[aria-current="page"] { color: #fff !important; }
 
-        /* Intro */
-        .progs-intro { padding: clamp(8.5rem, 16vw, 12.5rem) 0 clamp(3rem, 6vw, 5rem); }
-        .progs-title { margin: 0; font-weight: 800; font-size: clamp(2.6rem, 10vw, 8rem); line-height: 0.92; letter-spacing: -0.04em; color: var(--green-deep); }
+        /* Intro: a calm, proportionate page heading (was up to 8rem) */
+        .progs-intro { padding: clamp(7.5rem, 12vw, 10rem) 0 clamp(2rem, 4vw, 3rem); }
+        .progs-title { margin: 0; font-weight: 800; font-size: clamp(2.1rem, 1.2rem + 3.6vw, 3.75rem); line-height: 1.04; letter-spacing: -0.03em; color: var(--green-deep); }
         .progs-title span { display: block; }
-        .progs-title .t-second { color: var(--green-main); padding-left: clamp(1rem, 11vw, 9.5rem); }
-        .progs-lede { margin: 2.5rem 0 0 auto; max-width: 30rem; font-size: 1.12rem; line-height: 1.75; }
+        .progs-title .t-second { color: var(--green-main); padding-left: clamp(0.75rem, 5vw, 3.5rem); }
+        .progs-lede { margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0 auto; max-width: 30rem; font-size: 1.05rem; line-height: 1.7; }
 
         /* Programme index */
         .plist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
         .plist li { border-bottom: 1px solid var(--rule); }
         .prow {
             position: relative; isolation: isolate; display: grid;
-            grid-template-columns: 4.5rem minmax(0, 1.15fr) minmax(0, 1fr) 3rem;
-            align-items: center; column-gap: 1.5rem; padding: 2.2rem 1rem;
+            grid-template-columns: 3.5rem minmax(0, 1.15fr) minmax(0, 1fr) 2.5rem;
+            align-items: center; column-gap: 1.5rem; padding: 1.6rem 1rem;
             color: inherit; text-decoration: none;
         }
         .prow::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--green-mist); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
         .prow:hover::before, .prow:focus-visible::before { transform: scaleX(1); }
         .prow:focus-visible { outline: 3px solid var(--green-main); outline-offset: -3px; }
-        .p-num { align-self: start; padding-top: 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--green-mid); font-variant-numeric: tabular-nums; }
-        .p-name { margin: 0; font-size: clamp(1.75rem, 3.6vw, 3.1rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; color: var(--dark); transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
-        .p-desc { margin: 0; max-width: 27rem; font-size: 1rem; line-height: 1.55; color: var(--text-body); }
-        .p-meta { display: block; margin-top: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--green-mid); }
-        .p-arrow { justify-self: end; width: 2.1rem; height: 2.1rem; color: var(--green-deep); transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
-        .prow:hover .p-name, .prow:focus-visible .p-name { transform: translateX(0.7rem); }
+        .p-num { align-self: start; padding-top: 0.45rem; font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--green-mid); font-variant-numeric: tabular-nums; }
+        .p-name { margin: 0; font-size: clamp(1.3rem, 1rem + 1.2vw, 1.85rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; color: var(--dark); transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .p-desc { margin: 0; max-width: 27rem; font-size: 0.97rem; line-height: 1.55; color: var(--text-body); }
+        .p-meta { display: block; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 600; color: var(--green-mid); }
+        .p-arrow { justify-self: end; width: 1.7rem; height: 1.7rem; color: var(--green-deep); transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .prow:hover .p-name, .prow:focus-visible .p-name { transform: translateX(0.5rem); }
         .prow:hover .p-arrow, .prow:focus-visible .p-arrow { transform: rotate(-45deg); }
 
-        /* Campaigns */
-        .campaigns { background: var(--green-deep); color: #fff; padding: 7rem 0 6rem; overflow: hidden; }
+        /* Campaigns: a slow, continuous, self-looping marquee (pure CSS, no scripting).
+           The list holds the five campaigns twice. The track slides left by exactly half its own width (one full set),
+           so the second set lands where the first began and the loop restarts with no visible jump.
+           Each slide carries its own right margin (not a flex gap) so both halves are exactly equal in width. */
+        .campaigns { background: var(--green-deep); color: #fff; padding: clamp(3.5rem, 7vw, 5rem) 0 clamp(3rem, 6vw, 4.5rem); overflow: hidden; }
         .campaigns h2 { color: #fff; }
-        .c-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; }
-        .c-head .c-intro { margin: 0; max-width: 32rem; color: rgba(255,255,255,0.88); font-size: 1.08rem; line-height: 1.7; }
-        .c-controls { display: none; align-items: center; gap: 0.6rem; }
-        .js .c-controls { display: flex; }
-        .c-count { margin-right: 1rem; font-family: var(--font-display); font-weight: 600; color: var(--green-light); font-variant-numeric: tabular-nums; }
-        .c-btn { width: 3.2rem; height: 3.2rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #fff; border: 1px solid rgba(183,228,199,0.55); border-radius: 3px; cursor: pointer; transition: var(--transition); }
-        .c-btn svg { width: 1.3rem; height: 1.3rem; }
-        .c-btn:hover:not(:disabled), .c-btn:focus-visible { background: #fff; color: var(--green-deep); border-color: #fff; }
-        .c-btn:focus-visible { outline: 3px solid var(--green-light); outline-offset: 3px; }
-        .c-btn:disabled { opacity: 0.35; cursor: default; }
-        /* The track lets the next slide peek in, and bleeds to the right edge of the screen */
-        .c-track {
-            display: flex; gap: clamp(1.25rem, 3vw, 2.5rem); list-style: none; margin: 0 calc(50% - 50vw) 0 0; padding: 0 calc(50vw - 50%) 0 0;
-            overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain;
-            scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        .campaigns .h-section { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem); margin-bottom: 0.75rem; }
+        .c-head { margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem); }
+        .c-head .c-intro { margin: 0; max-width: 34rem; color: rgba(255,255,255,0.88); font-size: 1.02rem; line-height: 1.65; }
+
+        .c-marquee {
+            --c-w: clamp(14rem, 22vw, 19rem);   /* slide width */
+            --c-gap: clamp(1rem, 2vw, 2rem);    /* space between slides */
+            --c-time: 40s;                      /* one full pass of the five campaigns */
+            position: relative; width: 100%; overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+                    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
         }
-        .c-track::-webkit-scrollbar { display: none; }
-        .c-track:focus-visible { outline: 3px solid var(--green-light); outline-offset: 6px; }
-        .c-slide { flex: 0 0 clamp(17rem, 62vw, 44rem); scroll-snap-align: start; margin: 0; }
-        .c-figure { position: relative; margin: 0 0 1.5rem; aspect-ratio: 16 / 10; max-height: 24rem; overflow: hidden; background: var(--ph, var(--green-mid)); border-radius: var(--leaf-sm) 0 var(--leaf-sm) 0; }
+        .c-marquee:focus-visible { outline: 3px solid var(--green-light); outline-offset: -3px; }
+        .c-track {
+            display: flex; align-items: flex-start; width: max-content; margin: 0; padding: 0; list-style: none;
+            animation: c-scroll var(--c-time) linear infinite; will-change: transform;
+        }
+        .c-marquee:hover .c-track, .c-marquee:focus-within .c-track, .c-marquee.is-paused .c-track { animation-play-state: paused; }
+        @keyframes c-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+
+        .c-slide { flex: 0 0 var(--c-w); width: var(--c-w); margin: 0 var(--c-gap) 0 0; }
+        .c-figure { position: relative; margin: 0 0 1rem; aspect-ratio: 4 / 3; overflow: hidden; background: var(--ph, var(--green-mid)); border-radius: var(--leaf-sm) 0 var(--leaf-sm) 0; }
         .c-slide:nth-child(even) .c-figure { border-radius: 0 var(--leaf-sm) 0 var(--leaf-sm); }
         .c-figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        /* Every container is the same 4:3 box as the 4:3 photographs, so nothing is stretched; cover only trims if a photo differs */
         .c-figure img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 35%); }
-        /* Focal points: the frame is now wider than the 4:3 photos, so only a thin strip is trimmed from top and bottom.
-           Default 50% 35% keeps faces and upper bodies. Adjust per photo if needed, e.g. .c-slide:nth-child(3) .c-figure img { --pos: 50% 60%; } */
-        .c-ph { position: absolute; z-index: 0; left: 1.25rem; bottom: 1rem; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.92); }
-        .c-body { display: grid; grid-template-columns: 3rem minmax(0, 1fr); column-gap: 0.5rem; }
-        .c-num { font-family: var(--font-display); font-weight: 600; color: var(--green-light); font-variant-numeric: tabular-nums; padding-top: 0.45rem; }
-        .c-body h3 { margin: 0 0 0.6rem; color: #fff; font-size: clamp(1.5rem, 2.6vw, 2.1rem); letter-spacing: -0.02em; }
-        .c-body p { margin: 0; max-width: 34rem; color: rgba(255,255,255,0.9); line-height: 1.65; }
-        .c-progress { height: 2px; margin-top: 3rem; background: rgba(183,228,199,0.25); position: relative; }
-        .c-progress span { position: absolute; left: 0; top: 0; height: 100%; width: 20%; background: var(--green-light); transition: width 0.4s ease; }
-        .c-cue { display: none; margin: 1.25rem 0 0; font-size: 0.9rem; color: rgba(255,255,255,0.75); }
-        .js .c-cue { display: block; }
+        .c-ph { position: absolute; z-index: 0; left: 1rem; bottom: 0.8rem; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.92); }
+        .c-body { display: grid; grid-template-columns: 2rem minmax(0, 1fr); column-gap: 0.25rem; }
+        .c-num { font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--green-light); font-variant-numeric: tabular-nums; padding-top: 0.3rem; }
+        .c-body h3 { margin: 0 0 0.4rem; color: #fff; font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem); letter-spacing: -0.015em; line-height: 1.2; }
+        .c-body p { margin: 0; color: rgba(255,255,255,0.88); font-size: 0.9rem; line-height: 1.55; white-space: normal; }
 
         /* Get involved */
-        .involve-close { background: var(--green-pale); padding: 7rem 0; }
-        .involve-close h2 { margin: 0; font-size: clamp(2.6rem, 6.5vw, 5.5rem); font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; color: var(--green-deep); }
-        .involve-close p { margin: 0 0 1.75rem; max-width: 32rem; font-size: 1.12rem; line-height: 1.75; }
+        .involve-close { background: var(--green-pale); padding: clamp(3.5rem, 7vw, 5rem) 0; }
+        .involve-close h2 { margin: 0; font-size: clamp(2rem, 1.3rem + 2.8vw, 3.25rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--green-deep); }
+        .involve-close p { margin: 0 0 1.5rem; max-width: 32rem; font-size: 1.05rem; line-height: 1.7; }
 
         @media (max-width: 991.98px) {
             .navbar { padding: 0.4rem 1rem; }
             .nav-link { padding: 0.6rem 1rem !important; }
             .nav-link.nav-donate { display: inline-block; margin: 0.5rem 0 0.5rem 1rem; }
             .navbar-logo-img { max-height: 80px; max-width: 320px; }
-            .campaigns, .involve-close { padding: 4.75rem 0; }
-            .c-figure { max-height: 20rem; }
+            .c-marquee { --c-w: clamp(13rem, 30vw, 16rem); --c-time: 36s; }
         }
         @media (max-width: 767.98px) {
-            .prow { grid-template-columns: 2.4rem minmax(0, 1fr) 2rem; grid-template-areas: "num name arrow" ". desc ."; row-gap: 0.7rem; column-gap: 0.75rem; padding: 1.6rem 0.25rem; }
-            .p-num { grid-area: num; padding-top: 0.45rem; }
+            .prow { grid-template-columns: 2.4rem minmax(0, 1fr) 2rem; grid-template-areas: "num name arrow" ". desc ."; row-gap: 0.5rem; column-gap: 0.75rem; padding: 1.25rem 0.25rem; }
+            .p-num { grid-area: num; padding-top: 0.3rem; }
             .p-name { grid-area: name; }
-            .p-arrow { grid-area: arrow; align-self: start; margin-top: 0.3rem; width: 1.6rem; height: 1.6rem; }
+            .p-arrow { grid-area: arrow; align-self: start; margin-top: 0.2rem; width: 1.5rem; height: 1.5rem; }
             .p-text { grid-area: desc; }
             .progs-lede { margin-left: 0; }
         }
         @media (max-width: 575.98px) {
             .row { --bs-gutter-x: 1.5rem; }
             .btn-row .btn { flex: 1 1 auto; text-align: center; }
-            .c-body { grid-template-columns: 2.4rem minmax(0, 1fr); }
-            /* Phones: slides are narrow, so a slightly taller frame keeps the photo readable without growing the section */
-            .c-figure { aspect-ratio: 3 / 2; max-height: 16rem; margin-bottom: 1.1rem; }
+            .c-marquee { --c-w: min(14rem, 66vw); --c-gap: 1rem; --c-time: 32s; }
+            .c-body p { font-size: 0.88rem; }
         }
+
+        /* Reduced motion: no automatic movement. The campaigns become a normal swipeable row and the duplicate set is hidden. */
         @media (prefers-reduced-motion: reduce) {
-            .prow::before, .p-name, .p-arrow, .c-progress span { transition: none; }
-            .c-track { scroll-behavior: auto; }
+            .prow::before, .p-name, .p-arrow { transition: none; }
             .prow:hover .p-name, .prow:focus-visible .p-name, .prow:hover .p-arrow, .prow:focus-visible .p-arrow { transform: none; }
+            .c-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scrollbar-width: thin; padding-bottom: 0.5rem; }
+            .c-track { animation: none; will-change: auto; }
+            .c-slide[data-dup] { display: none; }
         }
 
         /* =====================================================================
@@ -423,10 +425,9 @@
 
         /* --- Programmes page --- */
         @media (max-width: 575.98px) {
-            .progs-title { font-size: clamp(2.6rem, 12vw, 3.4rem); }
-            .progs-title .t-second { padding-left: clamp(1rem, 11vw, 2.5rem); }
-            .progs-lede { margin-top: 1.75rem; }
-            .involve-close h2 { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+            .progs-title { font-size: clamp(2rem, 9vw, 2.4rem); }
+            .progs-title .t-second { padding-left: clamp(0.75rem, 6vw, 1.5rem); }
+            .progs-lede { margin-top: 1.25rem; font-size: 1rem; }
         }
     </style>
 </head>
@@ -550,20 +551,21 @@
         <section class="campaigns" id="campaigns" aria-labelledby="campaigns-heading">
             <div class="container">
                 <div class="c-head">
-                    <div>
-                        <h2 id="campaigns-heading" class="h-section mb-3">Our Campaigns</h2>
-                        <p class="c-intro">Alongside our programmes, these campaigns bring people together around food, stories, nature, creativity and animals.</p>
-                    </div>
-                    <div class="c-controls">
-                        <span class="c-count" id="cCount" aria-hidden="true">01 / 05</span>
-                        <button type="button" class="c-btn" id="cPrev" aria-label="Previous campaign" aria-controls="cTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M21 12H4M10 6l-6 6 6 6"/></svg></button>
-                        <button type="button" class="c-btn" id="cNext" aria-label="Next campaign" aria-controls="cTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M3 12h17M14 6l6 6-6 6"/></svg></button>
-                    </div>
+                    <h2 id="campaigns-heading" class="h-section">Our Campaigns</h2>
+                    <p class="c-intro">Alongside our programmes, these campaigns bring people together around food, stories, nature, creativity and animals.</p>
                 </div>
+            </div>
 
-                <div role="region" aria-roledescription="carousel" aria-label="Leafspire campaigns">
-                    <ul class="c-track" id="cTrack" tabindex="0" aria-label="Campaigns, scroll or swipe sideways">
-                    <li class="c-slide" role="group" aria-roledescription="slide" aria-label="1 of 5: Share a Plate">
+            <!--
+                AUTOMATIC CAMPAIGN MARQUEE (CSS only).
+                The five campaigns appear twice. The second set is a visual copy for the seamless loop: it is hidden from
+                assistive technology (aria-hidden) and made inert so it can never take keyboard focus or be clicked.
+                If you add a campaign, add it to BOTH sets. Speed is --c-time on .c-marquee (seconds for one full pass).
+                Hover or keyboard focus pauses the movement.
+            -->
+            <div class="c-marquee" role="region" aria-label="Leafspire campaigns" tabindex="0">
+                <ul class="c-track">
+                    <li class="c-slide">
                         <figure class="c-figure" style="--ph:#2d6a4f">
                             <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(120 300) rotate(-20)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
                             <span class="c-ph">Photograph to be added</span>
@@ -577,11 +579,11 @@
                             </div>
                         </div>
                     </li>
-                    <li class="c-slide" role="group" aria-roledescription="slide" aria-label="2 of 5: Changemakers Spotlight">
+                    <li class="c-slide">
                         <figure class="c-figure" style="--ph:#40916c">
                             <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(150 300) rotate(-5)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
                             <span class="c-ph">Photograph to be added</span>
-                            <img src="img/en12.png" alt="A young community changemaker being recognised" width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                            <img src="img/en12.png" alt="A young community changemaker being recognised" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
                         </figure>
                         <div class="c-body">
                             <span class="c-num" aria-hidden="true">02</span>
@@ -591,11 +593,11 @@
                             </div>
                         </div>
                     </li>
-                    <li class="c-slide" role="group" aria-roledescription="slide" aria-label="3 of 5: We Outside">
+                    <li class="c-slide">
                         <figure class="c-figure" style="--ph:#2d6a4f">
                             <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(180 300) rotate(10)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
                             <span class="c-ph">Photograph to be added</span>
-                            <img src="img/en15.png" alt="Young people exploring the outdoors together" width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                            <img src="img/en15.png" alt="Young people exploring the outdoors together" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
                         </figure>
                         <div class="c-body">
                             <span class="c-num" aria-hidden="true">03</span>
@@ -605,11 +607,11 @@
                             </div>
                         </div>
                     </li>
-                    <li class="c-slide" role="group" aria-roledescription="slide" aria-label="4 of 5: Make It Matter">
+                    <li class="c-slide">
                         <figure class="c-figure" style="--ph:#40916c">
                             <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(210 300) rotate(25)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
                             <span class="c-ph">Photograph to be added</span>
-                            <img src="img/en13.png" alt="Reused materials turned into useful products" width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                            <img src="img/en13.png" alt="Reused materials turned into useful products" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
                         </figure>
                         <div class="c-body">
                             <span class="c-num" aria-hidden="true">04</span>
@@ -619,11 +621,11 @@
                             </div>
                         </div>
                     </li>
-                    <li class="c-slide" role="group" aria-roledescription="slide" aria-label="5 of 5: Your Friendly Neighbourhood">
+                    <li class="c-slide">
                         <figure class="c-figure" style="--ph:#2d6a4f">
                             <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(240 300) rotate(40)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
                             <span class="c-ph">Photograph to be added</span>
-                            <img src="img/en14.png" alt="Community members caring for animals in their neighbourhood" width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'">
+                            <img src="img/en14.png" alt="Community members caring for animals in their neighbourhood" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
                         </figure>
                         <div class="c-body">
                             <span class="c-num" aria-hidden="true">05</span>
@@ -633,11 +635,79 @@
                             </div>
                         </div>
                     </li>
-                    </ul>
-                    <div class="c-progress" aria-hidden="true"><span id="cBar"></span></div>
-                </div>
-                <!-- CAMPAIGN PHOTOGRAPHS: each slide shows a green placeholder until a real photograph is saved as img/campaign-<name>.jpg (share-a-plate, changemakers-spotlight, we-outside, make-it-matter, your-friendly-neighbourhood). The image hides itself while the file is missing. -->
+                    <li class="c-slide" data-dup aria-hidden="true" inert>
+                        <figure class="c-figure" style="--ph:#2d6a4f">
+                            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(120 300) rotate(-20)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
+                            <span class="c-ph">Photograph to be added</span>
+                            <img src="img/en16.png" alt="" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
+                        </figure>
+                        <div class="c-body">
+                            <span class="c-num" aria-hidden="true">01</span>
+                            <div>
+                                <h3>Share a Plate</h3>
+                                <p>Community cooking, food-sharing gatherings and activities promoting food appreciation, nutrition awareness and community connection.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="c-slide" data-dup aria-hidden="true" inert>
+                        <figure class="c-figure" style="--ph:#40916c">
+                            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(150 300) rotate(-5)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
+                            <span class="c-ph">Photograph to be added</span>
+                            <img src="img/en12.png" alt="" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
+                        </figure>
+                        <div class="c-body">
+                            <span class="c-num" aria-hidden="true">02</span>
+                            <div>
+                                <h3>Changemakers Spotlight</h3>
+                                <p>A storytelling and recognition campaign highlighting young people and other community members making positive contributions in their communities.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="c-slide" data-dup aria-hidden="true" inert>
+                        <figure class="c-figure" style="--ph:#2d6a4f">
+                            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(180 300) rotate(10)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
+                            <span class="c-ph">Photograph to be added</span>
+                            <img src="img/en15.png" alt="" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
+                        </figure>
+                        <div class="c-body">
+                            <span class="c-num" aria-hidden="true">03</span>
+                            <div>
+                                <h3>We Outside</h3>
+                                <p>A campaign bringing young people together through outdoor experiences, exploration, nature activities, educational outings and community experiences.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="c-slide" data-dup aria-hidden="true" inert>
+                        <figure class="c-figure" style="--ph:#40916c">
+                            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(210 300) rotate(25)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
+                            <span class="c-ph">Photograph to be added</span>
+                            <img src="img/en13.png" alt="" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
+                        </figure>
+                        <div class="c-body">
+                            <span class="c-num" aria-hidden="true">04</span>
+                            <div>
+                                <h3>Make It Matter</h3>
+                                <p>A practical creativity and sustainability campaign encouraging repair, reuse, upcycling and turning discarded or underused materials into useful products and ideas.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="c-slide" data-dup aria-hidden="true" inert>
+                        <figure class="c-figure" style="--ph:#2d6a4f">
+                            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g transform="translate(240 300) rotate(40)"><path d="M0 0C52 -34 60 -108 0 -150C-60 -108 -52 -34 0 0Z" fill="#b7e4c7" fill-opacity="0.22"/></g></svg>
+                            <span class="c-ph">Photograph to be added</span>
+                            <img src="img/en14.png" alt="" width="800" height="600" loading="eager" decoding="async" onerror="this.style.display='none'">
+                        </figure>
+                        <div class="c-body">
+                            <span class="c-num" aria-hidden="true">05</span>
+                            <div>
+                                <h3>Your Friendly Neighbourhood</h3>
+                                <p>An animal welfare campaign promoting compassion, responsible care, protection and awareness across different animal species, from donkeys, cats and stray birds to livestock and wildlife.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
+            <!-- CAMPAIGN PHOTOGRAPHS: each slide shows a green placeholder until a real photograph is available. The image hides itself while the file is missing. -->
         </section>
         <!-- CAMPAIGNS End -->
 
@@ -760,35 +830,6 @@
             if (!btn) return;
             btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
         });
-
-        /* ===== CAMPAIGN CAROUSEL: native scroll-snap (touch swipe, trackpad, keyboard) plus previous/next buttons. No autoplay. ===== */
-        (function () {
-            var track = document.getElementById('cTrack');
-            if (!track) return;
-            var slides = track.children, n = slides.length;
-            var prev = document.getElementById('cPrev'), next = document.getElementById('cNext');
-            var count = document.getElementById('cCount'), bar = document.getElementById('cBar');
-            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var pad = function (v) { return (v < 10 ? '0' : '') + v; };
-            var step = function () { return n > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth; };
-            var ticking = false;
-            function update() {
-                ticking = false;
-                var max = track.scrollWidth - track.clientWidth, x = track.scrollLeft;
-                var atEnd = x >= max - 4, atStart = x <= 4;
-                var idx = atEnd ? n - 1 : Math.min(n - 1, Math.max(0, Math.round(x / step())));
-                if (count) count.textContent = pad(idx + 1) + ' / ' + pad(n);
-                if (bar) bar.style.width = ((idx + 1) / n * 100) + '%';
-                if (prev) prev.disabled = atStart;
-                if (next) next.disabled = atEnd;
-            }
-            function go(dir) { track.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' }); }
-            if (prev) prev.addEventListener('click', function () { go(-1); });
-            if (next) next.addEventListener('click', function () { go(1); });
-            track.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-            window.addEventListener('resize', update);
-            update();
-        })();
 
         /* ===== NEWSLETTER SUBSCRIPTION (unchanged) ===== */
         var form = document.getElementById("subscribeForm");
